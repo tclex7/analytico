@@ -1,5 +1,5 @@
 baseurl = "/"
-title = "Ghostwriter example"
+title = "Analytico Hub"
 theme = "ghostwriter"
 languageCode = "en-us"
 copyright = "My Name"
@@ -17,7 +17,7 @@ googleAnalytics = "XXX"
     useSessionStorage = false
 
 [Author]
-    name = "My Name"
+    name = "Analytico Hub"
     profile = "https://google.com/+XXX"
 
 [Taxonomies]
@@ -25,8 +25,8 @@ googleAnalytics = "XXX"
 
 [Params]
     intro = true
-    headline = "Ghostwriter example"
-    description = "Ghostwriter example description"
+    headline = "Analytico Hub"
+    description = "Learn R to Advance your Career"
     github = "https://github.com/XXX"
     gitlab = "https://gitlab.com/XXX"
     linkedin = "https://linkedin.com/in/XXX/"
@@ -69,6 +69,6 @@ googleAnalytics = "XXX"
     weight = 3
 
 [[menu.main]]
-    name = "About"
+    name = "Sex"
     url = "/page/about/"
     weight = 4

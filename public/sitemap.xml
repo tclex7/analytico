@@ -3,102 +3,102 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://example.com/page/about/</loc>
+    <loc>/page/about/</loc>
     <lastmod>2015-04-03T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/page/contact/</loc>
-    <lastmod>2015-04-03T02:13:50+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://example.com/</loc>
+    <loc>/</loc>
     <lastmod>2015-04-03T02:13:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://example.com/page/</loc>
+    <loc>/page/contact/</loc>
+    <lastmod>2015-04-03T02:13:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/page/</loc>
     <lastmod>2015-04-03T02:13:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://example.com/project/my-awesome-project/</loc>
+    <loc>/project/my-awesome-project/</loc>
     <lastmod>2014-11-18T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/project/</loc>
+    <loc>/project/</loc>
     <lastmod>2014-11-18T02:13:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://example.com/2014/09/28/creating-a-new-theme/</loc>
+    <loc>/2014/09/28/creating-a-new-theme/</loc>
     <lastmod>2014-09-28T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/post/</loc>
+    <loc>/post/</loc>
     <lastmod>2014-09-28T02:13:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://example.com/2014/04/02/goisforlovers/</loc>
+    <loc>/2014/04/02/goisforlovers/</loc>
     <lastmod>2014-04-02T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/2014/04/02/migrate-from-jekyll/</loc>
+    <loc>/2014/04/02/migrate-from-jekyll/</loc>
     <lastmod>2014-04-02T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/tags/</loc>
-    <lastmod>2014-04-02T02:13:50+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://example.com/tags/development/</loc>
+    <loc>/tags/</loc>
     <lastmod>2014-04-02T02:13:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://example.com/tags/go/</loc>
+    <loc>/tags/development/</loc>
     <lastmod>2014-04-02T02:13:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://example.com/tags/golang/</loc>
+    <loc>/tags/go/</loc>
     <lastmod>2014-04-02T02:13:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://example.com/tags/templates/</loc>
+    <loc>/tags/golang/</loc>
     <lastmod>2014-04-02T02:13:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://example.com/tags/themes/</loc>
+    <loc>/tags/templates/</loc>
     <lastmod>2014-04-02T02:13:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://example.com/2014/04/02/hugoisforlovers/</loc>
+    <loc>/tags/themes/</loc>
+    <lastmod>2014-04-02T02:13:50+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/2014/04/02/hugoisforlovers/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/tags/hugo/</loc>
+    <loc>/tags/hugo/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
