@@ -1,0 +1,9 @@
+---
+title: Reading in .csv from the Web
+author: Alexander Cruz
+date: '2019-08-15'
+slug: reading-in-csv-from-the-web
+categories: []
+tags: []
+description: ''
+---
