@@ -7,7 +7,7 @@ title: About
 
 ## About
 
-My name is Alex Cruz.  I have been working as a data analyst since 2016.  My favorite program to write code in is R, byt also use R and Julia.
+My name is Alex Cruz.  I have been working as a data analyst since 2016.  My favorite program to write code in is R, but also use R and Julia.
 
 ## School
 
