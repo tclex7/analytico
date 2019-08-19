@@ -48,14 +48,10 @@ googleAnalytics = "XXX"
     post = "/:year/:month/:day/:filename/"
 
 [[menu.main]]
-    name = "Blog"
+    name = "R Tutorials"
     url = "/"
     weight = 1
 
-[[menu.main]]
-    name = "R Tutorials"
-    url = "/project/"
-    weight = 2
     
 [[menu.main]]
     name = "R Shinny Yelp App"
@@ -65,14 +61,14 @@ googleAnalytics = "XXX"
 [[menu.main]]
     name = "Medium Home Sales by County App"
     url = "https://analyticohub.shinyapps.io/HomeSales/"
-    weight = 2
+    weight = 3
 
 [[menu.main]]
     name = "Contact"
     url = "/page/contact/"
-    weight = 3
+    weight = 4
 
 [[menu.main]]
     name = "About"
     url = "/page/about/"
-    weight = 4
+    weight = 5
