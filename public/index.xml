@@ -18,10 +18,13 @@
       <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/08/19/2019-08-19-nfl-fantasy-analysis/</guid>
-      <description>library(dplyr)
+      <description>Packages used:
+library(dplyr)
 library(readxl)
 library(ggplot2)
-Kamara &amp;lt;- read_excel(&amp;quot;/Users/acruz/My Files/R Project/Evan Engram/Evan.xlsx&amp;quot; , sheet = 3) ## readxl works best with a newer version of the tibble package. ## You currently have tibble v1.4.2. ## Falling back to column name repair from tibble &amp;lt;= v1.4.2. ## Message displays once per session. ## Warning in strptime(x, format, tz = tz): unknown timezone &amp;#39;zone/tz/2019b. ## 1.0/zoneinfo/America/Los_Angeles&amp;#39; Mark_Ingram &amp;lt;- read_excel(&amp;quot;/Users/acruz/My Files/R Project/Evan Engram/Evan.xlsx&amp;quot;, sheet = 4) Kamara &amp;lt;- Kamara %&amp;gt;% filter(attempt&amp;gt;0) %&amp;gt;% select(player, week, points) ## Warning: package &amp;#39;bindrcpp&amp;#39; was built under R version 3.</description>
+Data source: https://fantasydata.com/, uses non-ppr standard fantasy scoring
+Read in Alvin Kamara and Mark Ingram 2018 data, both data sets are in same excel sheets but in different tabs. Kamara is on sheet 3 and Ingram on sheet 4. Use readxl package, and read_excel() function.
+Kamara &amp;lt;- read_excel(akamara , sheet = 3) Mark_Ingram &amp;lt;- read_excel(mingram, sheet = 4) Using dplyr package filter games where A.</description>
     </item>
     
     <item>

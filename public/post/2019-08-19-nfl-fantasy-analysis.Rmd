@@ -11,34 +11,48 @@ description: ''
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+Packages used:
+
 library(dplyr)
 
 library(readxl)
 
 library(ggplot2)
+
+Data source: https://fantasydata.com/, uses non-ppr standard fantasy scoring
 ```{r, include=FALSE}
 library(dplyr)
 library(readxl)
 library(ggplot2)
+akamara <- "/Users/acruz/My Files/R Project/Evan Engram/Evan.xlsx"
+mingram <- "/Users/acruz/My Files/R Project/Evan Engram/Evan.xlsx"
 
 ```
 
-
-```{r}
-Kamara <- read_excel("/Users/acruz/My Files/R Project/Evan Engram/Evan.xlsx" , sheet = 3)
-Mark_Ingram <- read_excel("/Users/acruz/My Files/R Project/Evan Engram/Evan.xlsx", sheet = 4)
+Read in Alvin Kamara and Mark Ingram 2018 data, both data sets are in same excel sheets but in different tabs.  Kamara is on sheet 3 and Ingram on sheet 4. Use readxl package, and read_excel() function.
+```{r, warning=FALSE, message= FALSE}
+Kamara <- read_excel(akamara , sheet = 3)
+Mark_Ingram <- read_excel(mingram, sheet = 4)
+```
+Using dplyr package filter games where A. Kamara had more than 0 rushing attempts and select following columns from dataset: player, week, and points.  Do the same for M. Ingram.
+```{r, warning=FALSE, message= FALSE}
 Kamara <- Kamara %>% filter(attempt>0) %>% select(player, week, points)
 Mark_Ingram <- Mark_Ingram %>% filter(attempt>0) %>% select(player, week)
+```
+Use dplyr to join the two data sets using function left_join, then create an additional column where it tells you for each week if M. Ingram played, then remove column "player.y".
+```{r, warning=FALSE, message= FALSE}
 Kamara <- Kamara %>% left_join(Mark_Ingram, by="week") %>% mutate(Ingram_Play= ifelse(is.na(player.y), "Ingram not play", "Ingram played")) %>% select(-player.y)
+```
+Summarize the data to display difference in fantasy points
+```{r, warning=FALSE, message= FALSE}
 Kamara1 <- Kamara %>% group_by(player.x,Ingram_Play) %>%
   summarize(`total games`= n(),
             `Average points`= mean(points)) %>% mutate(`Average points` = round(`Average points`,2))
 Kamara1
 
 ```
-
-
-```{r}
+Using ggplot2 package display data in bar plot.
+```{r, warning=FALSE, message= FALSE}
 Kamara2 <- ggplot(data=Kamara1, aes(x=Ingram_Play, y=`Average points`, title="Even")) +
   geom_bar(stat="identity", fill="steelblue") +
   geom_text(aes(label=`Average points`), vjust=10, color="white", size=7) +
