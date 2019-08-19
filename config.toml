@@ -56,6 +56,16 @@ googleAnalytics = "XXX"
     name = "R Tutorials"
     url = "/project/"
     weight = 2
+    
+[[menu.main]]
+    name = "R Shinny Yelp App"
+    url = "https://analyticohub.shinyapps.io/yelp/"
+    weight = 2
+    
+[[menu.main]]
+    name = "Medium Home Sales by County App"
+    url = "https://analyticohub.shinyapps.io/HomeSales/"
+    weight = 2
 
 [[menu.main]]
     name = "Contact"
