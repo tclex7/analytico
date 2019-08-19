@@ -7,4 +7,4 @@ title: Contact
 
 ## Contact
 
-Best way to contact me is via email at AnalyticoHub@gamilc.com
+Best way to contact me is via email at AnalyticoHub@gmail.com
