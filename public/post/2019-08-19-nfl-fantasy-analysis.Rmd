@@ -1,0 +1,50 @@
+---
+title: NFL Fantasy Analysis
+author: Alexander Cruz
+date: '2019-08-19'
+slug: nfl-fantasy-analysis
+categories:
+  - Fantasy Football
+tags: []
+description: ''
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+library(dplyr)
+
+library(readxl)
+
+library(ggplot2)
+```{r, include=FALSE}
+library(dplyr)
+library(readxl)
+library(ggplot2)
+
+```
+
+
+```{r}
+Kamara <- read_excel("/Users/acruz/My Files/R Project/Evan Engram/Evan.xlsx" , sheet = 3)
+Mark_Ingram <- read_excel("/Users/acruz/My Files/R Project/Evan Engram/Evan.xlsx", sheet = 4)
+Kamara <- Kamara %>% filter(attempt>0) %>% select(player, week, points)
+Mark_Ingram <- Mark_Ingram %>% filter(attempt>0) %>% select(player, week)
+Kamara <- Kamara %>% left_join(Mark_Ingram, by="week") %>% mutate(Ingram_Play= ifelse(is.na(player.y), "Ingram not play", "Ingram played")) %>% select(-player.y)
+Kamara1 <- Kamara %>% group_by(player.x,Ingram_Play) %>%
+  summarize(`total games`= n(),
+            `Average points`= mean(points)) %>% mutate(`Average points` = round(`Average points`,2))
+Kamara1
+
+```
+
+
+```{r}
+Kamara2 <- ggplot(data=Kamara1, aes(x=Ingram_Play, y=`Average points`, title="Even")) +
+  geom_bar(stat="identity", fill="steelblue") +
+  geom_text(aes(label=`Average points`), vjust=10, color="white", size=7) +
+  ggtitle("Kamara 2018 Season")
+Kamara2
+
+```
+
+

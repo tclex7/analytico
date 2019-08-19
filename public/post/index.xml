@@ -7,82 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>My Name</copyright>
-    <lastBuildDate>Thu, 15 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 19 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>How to read in .csv file from Web</title>
-      <link>/2019/08/15/2019-08-15-how-to-read-in-csv-file-from-web/</link>
-      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
+      <title>NFL Fantasy Analysis</title>
+      <link>/2019/08/19/2019-08-19-nfl-fantasy-analysis/</link>
+      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/08/15/2019-08-15-how-to-read-in-csv-file-from-web/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Read Data into R</title>
-      <link>/2019/08/15/2019-08-15-read-data-into-r/</link>
-      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/2019/08/15/2019-08-15-read-data-into-r/</guid>
-      <description>Let’s load some data.
-library(datasets) data(&amp;quot;airquality&amp;quot;) summary(airquality) ## Ozone Solar.R Wind Temp ## Min. : 1.00 Min. : 7.0 Min. : 1.700 Min. :56.00 ## 1st Qu.: 18.00 1st Qu.:115.8 1st Qu.: 7.400 1st Qu.:72.00 ## Median : 31.50 Median :205.0 Median : 9.700 Median :79.00 ## Mean : 42.13 Mean :185.9 Mean : 9.958 Mean :77.88 ## 3rd Qu.: 63.25 3rd Qu.:258.8 3rd Qu.:11.500 3rd Qu.:85.00 ## Max. :168.</description>
-    </item>
-    
-    <item>
-      <title>Reading in .csv from the Web</title>
-      <link>/2019/08/15/2019-08-15-reading-in-csv-from-the-web/</link>
-      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/2019/08/15/2019-08-15-reading-in-csv-from-the-web/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Creating a New Theme</title>
-      <link>/2014/09/28/creating-a-new-theme/</link>
-      <pubDate>Sun, 28 Sep 2014 02:13:50 +0000</pubDate>
-      
-      <guid>/2014/09/28/creating-a-new-theme/</guid>
-      <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
-We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
-    </item>
-    
-    <item>
-      <title>(Hu)go Template Primer</title>
-      <link>/2014/04/02/goisforlovers/</link>
-      <pubDate>Wed, 02 Apr 2014 02:13:50 +0000</pubDate>
-      
-      <guid>/2014/04/02/goisforlovers/</guid>
-      <description>Hugo uses the excellent go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in go templates.
-This document is a brief primer on using go templates.</description>
-    </item>
-    
-    <item>
-      <title>Migrating from Jekyll</title>
-      <link>/2014/04/02/migrate-from-jekyll/</link>
-      <pubDate>Wed, 02 Apr 2014 02:13:50 +0000</pubDate>
-      
-      <guid>/2014/04/02/migrate-from-jekyll/</guid>
-      <description>Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static. You should therefore move it all there. With Jekyll, something that looked like
-▾ &amp;lt;root&amp;gt;/ ▾ images/ logo.png  should become
-▾ &amp;lt;root&amp;gt;/ ▾ static/ ▾ images/ logo.png  Additionally, you&amp;rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.</description>
-    </item>
-    
-    <item>
-      <title>Getting Started with Hugo</title>
-      <link>/2014/04/02/hugoisforlovers/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>/2014/04/02/hugoisforlovers/</guid>
-      <description>Step 1. Install Hugo Goto hugo releases and download the appropriate version for your os and architecture.
-Save it somewhere specific as we will be using it in the next step.
-More complete instructions are available at installing hugo
-Step 2. Build the Docs Hugo has its own example site which happens to also be the documentation site you are reading right now.
-Follow the following steps:
- Clone the hugo repository Go into the repo Run hugo in server mode and build the docs Open your browser to http://localhost:1313  Corresponding pseudo commands:</description>
+      <guid>/2019/08/19/2019-08-19-nfl-fantasy-analysis/</guid>
+      <description>library(dplyr)
+library(readxl)
+library(ggplot2)
+Kamara &amp;lt;- read_excel(&amp;quot;/Users/acruz/My Files/R Project/Evan Engram/Evan.xlsx&amp;quot; , sheet = 3) ## readxl works best with a newer version of the tibble package. ## You currently have tibble v1.4.2. ## Falling back to column name repair from tibble &amp;lt;= v1.4.2. ## Message displays once per session. ## Warning in strptime(x, format, tz = tz): unknown timezone &amp;#39;zone/tz/2019b. ## 1.0/zoneinfo/America/Los_Angeles&amp;#39; Mark_Ingram &amp;lt;- read_excel(&amp;quot;/Users/acruz/My Files/R Project/Evan Engram/Evan.xlsx&amp;quot;, sheet = 4) Kamara &amp;lt;- Kamara %&amp;gt;% filter(attempt&amp;gt;0) %&amp;gt;% select(player, week, points) ## Warning: package &amp;#39;bindrcpp&amp;#39; was built under R version 3.</description>
     </item>
     
   </channel>

@@ -3,8 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>How to read in .csv file from Web &middot; Analytico Hub</title>
-        <meta name="description" content="">
+        <title>NFL Fantasy Analysis &middot; Analytico Hub</title>
+        <meta name="description" content="library(dplyr)
+library(readxl)
+library(ggplot2)
+Kamara &lt;- read_excel(&quot;/Users/acruz/My Files/R Project/Evan Engram/Evan.xlsx&quot; , sheet = 3) ## readxl works best with a newer version of the tibble package. ## You currently have tibble v1.4.2. ## Falling back to column name repair from tibble &lt;= v1.4.2. ## Message displays once per session. ## Warning in strptime(x, format, tz = tz): unknown timezone &#39;zone/tz/2019b. ## 1.0/zoneinfo/America/Los_Angeles&#39; Mark_Ingram &lt;- read_excel(&quot;/Users/acruz/My Files/R Project/Evan Engram/Evan.xlsx&quot;, sheet = 4) Kamara &lt;- Kamara %&gt;% filter(attempt&gt;0) %&gt;% select(player, week, points) ## Warning: package &#39;bindrcpp&#39; was built under R version 3.">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
         <meta name="generator" content="Hugo 0.56.3" />
@@ -89,10 +92,6 @@ if (!doNotTrack) {
         <a title="About" href="/page/about/">About</a>
     </li>
 
-    <li class="site-nav-item">
-        <a title="Getting Started with Hugo" href="/2014/04/02/hugoisforlovers/">Getting Started with Hugo</a>
-    </li>
-
                     </ul>
                 </div>
             </header>
@@ -103,10 +102,10 @@ if (!doNotTrack) {
 <div class="container">
     <article class="post-container" itemscope="" itemtype="http://schema.org/BlogPosting">
         <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">How to read in .csv file from Web</h1>
+    <h1 class="post-title" itemprop="name headline">NFL Fantasy Analysis</h1>
     
     <p class="post-date">
-        <span>Published <time datetime="2019-08-15" itemprop="datePublished">Thu, Aug 15, 2019</time></span>
+        <span>Published <time datetime="2019-08-19" itemprop="datePublished">Mon, Aug 19, 2019</time></span>
         <span>by</span>
         <span itemscope="" itemprop="author" itemtype="https://schema.org/Person">
             <span itemprop="name">
@@ -116,7 +115,7 @@ if (!doNotTrack) {
     </p>
     
         <p class="post-reading post-line">
-            <span>Estimated reading time: 0 min</span>
+            <span>Estimated reading time: 2 min</span>
         </p>
     
 </header>
@@ -127,7 +126,50 @@ if (!doNotTrack) {
     
 
 
-
+<p>library(dplyr)</p>
+<p>library(readxl)</p>
+<p>library(ggplot2)</p>
+<pre class="r"><code>Kamara &lt;- read_excel(&quot;/Users/acruz/My Files/R Project/Evan Engram/Evan.xlsx&quot; , sheet = 3)</code></pre>
+<pre><code>## readxl works best with a newer version of the tibble package.
+## You currently have tibble v1.4.2.
+## Falling back to column name repair from tibble &lt;= v1.4.2.
+## Message displays once per session.</code></pre>
+<pre><code>## Warning in strptime(x, format, tz = tz): unknown timezone &#39;zone/tz/2019b.
+## 1.0/zoneinfo/America/Los_Angeles&#39;</code></pre>
+<pre class="r"><code>Mark_Ingram &lt;- read_excel(&quot;/Users/acruz/My Files/R Project/Evan Engram/Evan.xlsx&quot;, sheet = 4)
+Kamara &lt;- Kamara %&gt;% filter(attempt&gt;0) %&gt;% select(player, week, points)</code></pre>
+<pre><code>## Warning: package &#39;bindrcpp&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## Warning: `lang()` is deprecated as of rlang 0.2.0.
+## Please use `call2()` instead.
+## This warning is displayed once per session.</code></pre>
+<pre><code>## Warning: `new_overscope()` is deprecated as of rlang 0.2.0.
+## Please use `new_data_mask()` instead.
+## This warning is displayed once per session.</code></pre>
+<pre><code>## Warning: `overscope_eval_next()` is deprecated as of rlang 0.2.0.
+## Please use `eval_tidy()` with a data mask instead.
+## This warning is displayed once per session.</code></pre>
+<pre class="r"><code>Mark_Ingram &lt;- Mark_Ingram %&gt;% filter(attempt&gt;0) %&gt;% select(player, week)
+Kamara &lt;- Kamara %&gt;% left_join(Mark_Ingram, by=&quot;week&quot;) %&gt;% mutate(Ingram_Play= ifelse(is.na(player.y), &quot;Ingram not play&quot;, &quot;Ingram played&quot;)) %&gt;% select(-player.y)</code></pre>
+<pre><code>## Warning: `chr_along()` is deprecated as of rlang 0.2.0.
+## This warning is displayed once per session.</code></pre>
+<pre><code>## Warning: The `printer` argument is deprecated as of rlang 0.3.0.
+## This warning is displayed once per session.</code></pre>
+<pre class="r"><code>Kamara1 &lt;- Kamara %&gt;% group_by(player.x,Ingram_Play) %&gt;%
+  summarize(`total games`= n(),
+            `Average points`= mean(points)) %&gt;% mutate(`Average points` = round(`Average points`,2))
+Kamara1</code></pre>
+<pre><code>## # A tibble: 2 x 4
+## # Groups:   player.x [1]
+##   player.x Ingram_Play     `total games` `Average points`
+##   &lt;chr&gt;    &lt;chr&gt;                   &lt;int&gt;            &lt;dbl&gt;
+## 1 Kamara   Ingram not play             4             25.3
+## 2 Kamara   Ingram played              11             15.6</code></pre>
+<pre class="r"><code>Kamara2 &lt;- ggplot(data=Kamara1, aes(x=Ingram_Play, y=`Average points`, title=&quot;Even&quot;)) +
+  geom_bar(stat=&quot;identity&quot;, fill=&quot;steelblue&quot;) +
+  geom_text(aes(label=`Average points`), vjust=10, color=&quot;white&quot;, size=7) +
+  ggtitle(&quot;Kamara 2018 Season&quot;)
+Kamara2</code></pre>
+<p><img src="/post/2019-08-19-nfl-fantasy-analysis_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 
 </div>
 
@@ -136,7 +178,7 @@ if (!doNotTrack) {
 
     <div class="share">
         
-            <a class="icon-twitter" href="https://twitter.com/share?text=How%20to%20read%20in%20.csv%20file%20from%20Web&url=%2f2019%2f08%2f15%2f2019-08-15-how-to-read-in-csv-file-from-web%2f"
+            <a class="icon-twitter" href="https://twitter.com/share?text=NFL%20Fantasy%20Analysis&url=%2f2019%2f08%2f19%2f2019-08-19-nfl-fantasy-analysis%2f"
                 onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                 <i class="fa fa-twitter"></i>
                 <span class="hidden">Twitter</span>
@@ -144,7 +186,7 @@ if (!doNotTrack) {
         
 
         
-            <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2f2019%2f08%2f15%2f2019-08-15-how-to-read-in-csv-file-from-web%2f"
+            <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2f2019%2f08%2f19%2f2019-08-19-nfl-fantasy-analysis%2f"
                 onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                 <i class="fa fa-facebook"></i>
                 <span class="hidden">Facebook</span>
@@ -152,7 +194,7 @@ if (!doNotTrack) {
         
 
         
-            <a class="icon-google-plus" href="https://plus.google.com/share?url=%2f2019%2f08%2f15%2f2019-08-15-how-to-read-in-csv-file-from-web%2f"
+            <a class="icon-google-plus" href="https://plus.google.com/share?url=%2f2019%2f08%2f19%2f2019-08-19-nfl-fantasy-analysis%2f"
               onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
               <i class="fa fa-google-plus"></i>
                 <span class="hidden">Google+</span>

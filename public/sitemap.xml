@@ -4,29 +4,19 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2019-08-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-08-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/2019/08/15/2019-08-15-how-to-read-in-csv-file-from-web/</loc>
-    <lastmod>2019-08-15T00:00:00+00:00</lastmod>
+    <loc>/2019/08/19/2019-08-19-nfl-fantasy-analysis/</loc>
+    <lastmod>2019-08-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2019-08-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-08-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/2019/08/15/2019-08-15-read-data-into-r/</loc>
-    <lastmod>2019-08-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2019/08/15/2019-08-15-reading-in-csv-from-the-web/</loc>
-    <lastmod>2019-08-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -57,64 +47,7 @@
   </url>
   
   <url>
-    <loc>/2014/09/28/creating-a-new-theme/</loc>
-    <lastmod>2014-09-28T02:13:50+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2014/04/02/goisforlovers/</loc>
-    <lastmod>2014-04-02T02:13:50+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2014/04/02/migrate-from-jekyll/</loc>
-    <lastmod>2014-04-02T02:13:50+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/</loc>
-    <lastmod>2014-04-02T02:13:50+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/development/</loc>
-    <lastmod>2014-04-02T02:13:50+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/go/</loc>
-    <lastmod>2014-04-02T02:13:50+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/golang/</loc>
-    <lastmod>2014-04-02T02:13:50+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/templates/</loc>
-    <lastmod>2014-04-02T02:13:50+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/themes/</loc>
-    <lastmod>2014-04-02T02:13:50+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/2014/04/02/hugoisforlovers/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/hugo/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
