@@ -3,8 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>About &middot; Analytico Hub</title>
-        <meta name="description" content="Things about me.">
+        <title>NFL Fantasy Analysis &middot; Analytico Hub</title>
+        <meta name="description" content="Packages used:
+library(dplyr)
+library(readxl)
+library(ggplot2)
+Data source: https://fantasydata.com/, uses non-ppr standard fantasy scoring
+Read in Alvin Kamara and Mark Ingram 2018 data, both data sets are in same excel sheets but in different tabs. Kamara is on sheet 3 and Ingram on sheet 4. Use readxl package, and read_excel() function.
+Kamara &lt;- read_excel(akamara , sheet = 3) Mark_Ingram &lt;- read_excel(mingram, sheet = 4) Using dplyr package filter games where A.">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
         <meta name="generator" content="Hugo 0.58.1" />
@@ -101,28 +107,103 @@ if (!doNotTrack) {
 
 
 <div class="container">
-    <article class="post-container">
+    <article class="post-container" itemscope="" itemtype="http://schema.org/BlogPosting">
         <header class="post-header">
-    <h1 class="post-title">About</h1>
+    <h1 class="post-title" itemprop="name headline">NFL Fantasy Analysis</h1>
     
-        <p class="post-description">Things about me.</p>
+    <p class="post-date">
+        <span>Published <time datetime="2020-03-18" itemprop="datePublished">Wed, Mar 18, 2020</time></span>
+        <span>by</span>
+        <span itemscope="" itemprop="author" itemtype="https://schema.org/Person">
+            <span itemprop="name">
+                <a href="https://google.com/&#43;XXX" itemprop="url" rel="author">Alexander Cruz</a>
+            </span>
+        </span>
+    </p>
+    
+        <p class="post-reading post-line">
+            <span>Estimated reading time: 2 min</span>
+        </p>
     
 </header>
 
-        <div class="post-content clearfix">
+        <div class="post-content clearfix" itemprop="articleBody">
     
 
     
 
-<h2 id="about">About</h2>
 
-<p>My name is Alex Cruz.  I have been working as a data analyst since 2016.  My favorite program to write code in is R, but also use R and Julia.</p>
-
-<h2 id="school">School</h2>
-
-<p>I attended the University of California, Berkeley and graduated in 2009.</p>
+<hr />
+<p>Packages used:</p>
+<p>library(dplyr)</p>
+<p>library(readxl)</p>
+<p>library(ggplot2)</p>
+<p>Data source: <a href="https://fantasydata.com/" class="uri">https://fantasydata.com/</a>, uses non-ppr standard fantasy scoring</p>
+<p>Read in Alvin Kamara and Mark Ingram 2018 data, both data sets are in same excel sheets but in different tabs. Kamara is on sheet 3 and Ingram on sheet 4. Use readxl package, and read_excel() function.</p>
+<pre class="r"><code>Kamara &lt;- read_excel(akamara , sheet = 3)
+Mark_Ingram &lt;- read_excel(mingram, sheet = 4)</code></pre>
+<p>Using dplyr package filter games where A. Kamara had more than 0 rushing attempts and select following columns from dataset: player, week, and points. Do the same for M. Ingram.</p>
+<pre class="r"><code>Kamara &lt;- Kamara %&gt;% filter(attempt&gt;0) %&gt;% select(player, week, points)
+Mark_Ingram &lt;- Mark_Ingram %&gt;% filter(attempt&gt;0) %&gt;% select(player, week)</code></pre>
+<p>Use dplyr to join the two data sets using function left_join, then create an additional column where it tells you for each week if M. Ingram played, then remove column “player.y”.</p>
+<pre class="r"><code>Kamara &lt;- Kamara %&gt;% left_join(Mark_Ingram, by=&quot;week&quot;) %&gt;% mutate(Ingram_Play= ifelse(is.na(player.y), &quot;Ingram not play&quot;, &quot;Ingram played&quot;)) %&gt;% select(-player.y)</code></pre>
+<p>Summarize the data to display difference in fantasy points</p>
+<pre class="r"><code>Kamara1 &lt;- Kamara %&gt;% group_by(player.x,Ingram_Play) %&gt;%
+  summarize(`total games`= n(),
+            `Average points`= mean(points)) %&gt;% mutate(`Average points` = round(`Average points`,2))
+Kamara1</code></pre>
+<pre><code>## # A tibble: 2 x 4
+## # Groups:   player.x [1]
+##   player.x Ingram_Play     `total games` `Average points`
+##   &lt;chr&gt;    &lt;chr&gt;                   &lt;int&gt;            &lt;dbl&gt;
+## 1 Kamara   Ingram not play             4             25.3
+## 2 Kamara   Ingram played              11             15.6</code></pre>
+<p>Using ggplot2 package display data in bar plot.</p>
+<pre class="r"><code>Kamara2 &lt;- ggplot(data=Kamara1, aes(x=Ingram_Play, y=`Average points`, title=&quot;Even&quot;)) +
+  geom_bar(stat=&quot;identity&quot;, fill=&quot;steelblue&quot;) +
+  geom_text(aes(label=`Average points`), vjust=10, color=&quot;white&quot;, size=7) +
+  ggtitle(&quot;Kamara 2018 Season&quot;)
+Kamara2</code></pre>
+<p><img src="/post/2020-03-18-nfl-fantasy-analysis_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 
 </div>
+
+        <footer class="post-footer clearfix">
+    
+
+    <div class="share">
+        
+            <a class="icon-twitter" href="https://twitter.com/share?text=NFL%20Fantasy%20Analysis&url=%2f2020%2f03%2f18%2f2020-03-18-nfl-fantasy-analysis%2f"
+                onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fa fa-twitter"></i>
+                <span class="hidden">Twitter</span>
+            </a>
+        
+
+        
+            <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2f2020%2f03%2f18%2f2020-03-18-nfl-fantasy-analysis%2f"
+                onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                <i class="fa fa-facebook"></i>
+                <span class="hidden">Facebook</span>
+            </a>
+        
+
+        
+            <a class="icon-google-plus" href="https://plus.google.com/share?url=%2f2020%2f03%2f18%2f2020-03-18-nfl-fantasy-analysis%2f"
+              onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+              <i class="fa fa-google-plus"></i>
+                <span class="hidden">Google+</span>
+            </a>
+        
+        
+    </div>
+</footer>
+
+        
+    <div class="comments">
+        
+    </div>
+
     </article>
 </div>
 

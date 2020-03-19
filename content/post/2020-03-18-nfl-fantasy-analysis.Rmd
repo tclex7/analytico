@@ -1,12 +1,13 @@
 ---
 title: NFL Fantasy Analysis
 author: Alexander Cruz
-date: '2019-08-19'
+date: '2020-03-18'
 slug: nfl-fantasy-analysis
-categories:
-  - Fantasy Football
+categories: []
 tags: []
 description: ''
+---
+
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)

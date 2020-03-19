@@ -1,0 +1,61 @@
+---
+title: "Webscrape CDC Website with Python"
+author: "Alexander Cruz"
+date: '2020-03-18'
+description: ''
+slug: webscrape-cdc-website-with-python
+tags: []
+categories: []
+---
+
+
+
+<div id="web-scraping-cdc-website-using-lxml" class="section level2">
+<h2>Web Scraping CDC Website using lxml</h2>
+<p>Note: The website URL has changed a couple times during the last month, you will have to update the url as well.</p>
+<p>Import 3rd party packages. Use pip if you don’t have them already installed.</p>
+<pre class="python"><code>import requests
+import datetime
+from lxml import html</code></pre>
+<pre class="python"><code># url to scrape data from 
+url = &#39;https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/cases-in-us.html?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fcoronavirus%2F2019-ncov%2Fcases-in-us.html&#39;
+  
+# path to particular element 
+path = &#39;/html/body/div[6]/main/div[3]/div/div[3]/div[2]/div/div[1]/div/div[2]/ul&#39;
+  
+# get response object 
+response = requests.get(url) 
+  
+# get byte string 
+byte_data = response.content 
+  
+# get access to the raw bytes of the response payload
+source_code = html.fromstring(byte_data) 
+  
+# jump to preferred html element 
+tree = source_code.xpath(path)
+
+# url to scrape data from 
+url2 = &#39;https://www.cdc.gov/coronavirus/2019-ncov/cases-in-us.html&#39;
+
+# path to particular element 
+path2 = &#39;/html/body/div[6]/main/div[3]/div/div[3]/div[1]/div/p[1]/span&#39;
+
+# jump to preferred html element 
+tree2 = source_code.xpath(path2)
+
+
+  
+# print texts in first element in list
+d = datetime. datetime. today()
+d = d.strftime(&#39;%m-%d-%Y&#39;)
+print(&#39;As of &#39;+str(d)+&#39;, the coronavirus impact on the US is:&#39;)</code></pre>
+<pre><code>## As of 03-18-2020, the coronavirus impact on the US is:</code></pre>
+<pre class="python"><code>print(tree[0].text_content()) </code></pre>
+<pre><code>## 
+## Total cases: 7,038
+## Total deaths: 97
+## Jurisdictions reporting cases: 54 (50 states, District of Columbia, Puerto Rico, Guam, and US Virgin Islands)</code></pre>
+<pre class="python"><code>print(tree2[0].text_content())</code></pre>
+<pre><code>## Updated March 18, 2020</code></pre>
+</div>

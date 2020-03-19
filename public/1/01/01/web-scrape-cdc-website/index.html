@@ -3,8 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>About &middot; Analytico Hub</title>
-        <meta name="description" content="Things about me.">
+        <title>Web Scraping CDC Website &middot; Analytico Hub</title>
+        <meta name="description" content="Web Scraping CDC Website using lxml Note: The website URL has changed a couple times during the last month, you will have to update the url as well.
+Import 3rd party packages. Use pip if you don’t have them already installed.
+import requests import datetime from lxml import html # url to scrape data from url = &#39;https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/cases-in-us.html?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fcoronavirus%2F2019-ncov%2Fcases-in-us.html&#39; # path to particular element path = &#39;/html/body/div[6]/main/div[3]/div/div[3]/div[2]/div/div[1]/div/div[2]/ul&#39; # get response object response = requests.">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
         <meta name="generator" content="Hugo 0.58.1" />
@@ -101,28 +103,120 @@ if (!doNotTrack) {
 
 
 <div class="container">
-    <article class="post-container">
+    <article class="post-container" itemscope="" itemtype="http://schema.org/BlogPosting">
         <header class="post-header">
-    <h1 class="post-title">About</h1>
+    <h1 class="post-title" itemprop="name headline">Web Scraping CDC Website</h1>
     
-        <p class="post-description">Things about me.</p>
+    <p class="post-date">
+        <span>Published <time datetime="0001-01-01" itemprop="datePublished">Mon, Jan 1, 0001</time></span>
+        <span>by</span>
+        <span itemscope="" itemprop="author" itemtype="https://schema.org/Person">
+            <span itemprop="name">
+                <a href="https://google.com/&#43;XXX" itemprop="url" rel="author">Alexander Cruz</a>
+            </span>
+        </span>
+    </p>
+    
+        <p class="post-reading post-line">
+            <span>Estimated reading time: 1 min</span>
+        </p>
     
 </header>
 
-        <div class="post-content clearfix">
+        <div class="post-content clearfix" itemprop="articleBody">
     
 
     
 
-<h2 id="about">About</h2>
 
-<p>My name is Alex Cruz.  I have been working as a data analyst since 2016.  My favorite program to write code in is R, but also use R and Julia.</p>
+<div id="web-scraping-cdc-website-using-lxml" class="section level2">
+<h2>Web Scraping CDC Website using lxml</h2>
+<p>Note: The website URL has changed a couple times during the last month, you will have to update the url as well.</p>
+<p>Import 3rd party packages. Use pip if you don’t have them already installed.</p>
+<pre class="python"><code>import requests
+import datetime
+from lxml import html</code></pre>
+<pre class="python"><code># url to scrape data from 
+url = &#39;https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/cases-in-us.html?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fcoronavirus%2F2019-ncov%2Fcases-in-us.html&#39;
+  
+# path to particular element 
+path = &#39;/html/body/div[6]/main/div[3]/div/div[3]/div[2]/div/div[1]/div/div[2]/ul&#39;
+  
+# get response object 
+response = requests.get(url) 
+  
+# get byte string 
+byte_data = response.content 
+  
+# get access to the raw bytes of the response payload
+source_code = html.fromstring(byte_data) 
+  
+# jump to preferred html element 
+tree = source_code.xpath(path)
 
-<h2 id="school">School</h2>
+# url to scrape data from 
+url2 = &#39;https://www.cdc.gov/coronavirus/2019-ncov/cases-in-us.html&#39;
 
-<p>I attended the University of California, Berkeley and graduated in 2009.</p>
+# path to particular element 
+path2 = &#39;/html/body/div[6]/main/div[3]/div/div[3]/div[1]/div/p[1]/span&#39;
+
+# jump to preferred html element 
+tree2 = source_code.xpath(path2)
+
+
+  
+# print texts in first element in list
+d = datetime. datetime. today()
+d = d.strftime(&#39;%m-%d-%Y&#39;)
+print(&#39;As of &#39;+str(d)+&#39;, the coronavirus impact on the US is:&#39;)</code></pre>
+<pre><code>## As of 03-18-2020, the coronavirus impact on the US is:</code></pre>
+<pre class="python"><code>print(tree[0].text_content()) </code></pre>
+<pre><code>## 
+## Total cases: 7,038
+## Total deaths: 97
+## Jurisdictions reporting cases: 54 (50 states, District of Columbia, Puerto Rico, Guam, and US Virgin Islands)</code></pre>
+<pre class="python"><code>print(tree2[0].text_content())</code></pre>
+<pre><code>## Updated March 18, 2020</code></pre>
+</div>
 
 </div>
+
+        <footer class="post-footer clearfix">
+    
+
+    <div class="share">
+        
+            <a class="icon-twitter" href="https://twitter.com/share?text=Web%20Scraping%20CDC%20Website&url=%2f1%2f01%2f01%2fweb-scrape-cdc-website%2f"
+                onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fa fa-twitter"></i>
+                <span class="hidden">Twitter</span>
+            </a>
+        
+
+        
+            <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2f1%2f01%2f01%2fweb-scrape-cdc-website%2f"
+                onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                <i class="fa fa-facebook"></i>
+                <span class="hidden">Facebook</span>
+            </a>
+        
+
+        
+            <a class="icon-google-plus" href="https://plus.google.com/share?url=%2f1%2f01%2f01%2fweb-scrape-cdc-website%2f"
+              onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+              <i class="fa fa-google-plus"></i>
+                <span class="hidden">Google+</span>
+            </a>
+        
+        
+    </div>
+</footer>
+
+        
+    <div class="comments">
+        
+    </div>
+
     </article>
 </div>
 
@@ -141,7 +235,7 @@ if (!doNotTrack) {
                 </div>
 
                 <p class="footer-copyright">
-                    <span>&copy; 2020 / Powered by <a href="https://gohugo.io/">Hugo</a></span>
+                    <span>&copy; 2019 / Powered by <a href="https://gohugo.io/">Hugo</a></span>
                 </p>
                 <p class="footer-copyright">
                     <span><a href="https://github.com/roryg/ghostwriter">Ghostwriter theme</a> By <a href="http://jollygoodthemes.com">JollyGoodThemes</a></span>

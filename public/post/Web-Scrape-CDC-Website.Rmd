@@ -1,0 +1,59 @@
+---
+title: "Web Scraping CDC Website"
+author: "Alexander Cruz"
+date: "3/18/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Web Scraping CDC Website using lxml 
+
+Note: The website URL has changed a couple times during the last month, you will have to update the url as well.
+
+Import 3rd party packages.  Use pip if you don't have them already installed.
+```{python}
+import requests
+import datetime
+from lxml import html
+```
+
+```{python}
+# url to scrape data from 
+url = 'https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/cases-in-us.html?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fcoronavirus%2F2019-ncov%2Fcases-in-us.html'
+  
+# path to particular element 
+path = '/html/body/div[6]/main/div[3]/div/div[3]/div[2]/div/div[1]/div/div[2]/ul'
+  
+# get response object 
+response = requests.get(url) 
+  
+# get byte string 
+byte_data = response.content 
+  
+# get access to the raw bytes of the response payload
+source_code = html.fromstring(byte_data) 
+  
+# jump to preferred html element 
+tree = source_code.xpath(path)
+
+# url to scrape data from 
+url2 = 'https://www.cdc.gov/coronavirus/2019-ncov/cases-in-us.html'
+
+# path to particular element 
+path2 = '/html/body/div[6]/main/div[3]/div/div[3]/div[1]/div/p[1]/span'
+
+# jump to preferred html element 
+tree2 = source_code.xpath(path2)
+
+
+  
+# print texts in first element in list
+d = datetime. datetime. today()
+d = d.strftime('%m-%d-%Y')
+print('As of '+str(d)+', the coronavirus impact on the US is:')
+print(tree[0].text_content()) 
+print(tree2[0].text_content())
+```

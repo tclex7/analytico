@@ -48,7 +48,7 @@ googleAnalytics = "XXX"
     post = "/:year/:month/:day/:filename/"
 
 [[menu.main]]
-    name = "R Tutorials"
+    name = "Tutorials"
     url = "/"
     weight = 1
 
