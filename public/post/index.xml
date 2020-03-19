@@ -13,36 +13,6 @@
     
     
     <item>
-      <title>NFL Fantasy Analysis</title>
-      <link>/2020/03/18/2020-03-18-nfl-fantasy-analysis.knit/</link>
-      <pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/2020/03/18/2020-03-18-nfl-fantasy-analysis.knit/</guid>
-      <description>Packages used:
-library(dplyr)
-library(readxl)
-library(ggplot2)
-Data source: https://fantasydata.com/, uses non-ppr standard fantasy scoring
-Read in Alvin Kamara and Mark Ingram 2018 data, both data sets are in same excel sheets but in different tabs. Kamara is on sheet 3 and Ingram on sheet 4. Use readxl package, and read_excel() function.
-Kamara &amp;lt;- read_excel(akamara , sheet = 3) Mark_Ingram &amp;lt;- read_excel(mingram, sheet = 4)  Using dplyr package filter games where A.</description>
-    </item>
-    
-    <item>
-      <title>NFL Fantasy Analysis</title>
-      <link>/2020/03/18/2020-03-18-nfl-fantasy-analysis.utf8/</link>
-      <pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/2020/03/18/2020-03-18-nfl-fantasy-analysis.utf8/</guid>
-      <description>Packages used:
-library(dplyr)
-library(readxl)
-library(ggplot2)
-Data source: https://fantasydata.com/, uses non-ppr standard fantasy scoring
-Read in Alvin Kamara and Mark Ingram 2018 data, both data sets are in same excel sheets but in different tabs. Kamara is on sheet 3 and Ingram on sheet 4. Use readxl package, and read_excel() function.
-Kamara &amp;lt;- read_excel(akamara , sheet = 3) Mark_Ingram &amp;lt;- read_excel(mingram, sheet = 4)  Using dplyr package filter games where A.</description>
-    </item>
-    
-    <item>
       <title>Webscrape CDC Website with Python</title>
       <link>/2020/03/18/2020-03-18-webscrape-cdc-website-with-python/</link>
       <pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate>
@@ -54,12 +24,18 @@ import requests import datetime from lxml import html # url to scrape data from 
     </item>
     
     <item>
-      <title></title>
-      <link>/1/01/01/2020-03-18-nfl-fantasy-analysis/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>Fantasy Football Analysis VLOOKUP in R</title>
+      <link>/2020/03/17/2020-03-17-fantasy-football-analysis-vlookup-in-r/</link>
+      <pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>/1/01/01/2020-03-18-nfl-fantasy-analysis/</guid>
-      <description></description>
+      <guid>/2020/03/17/2020-03-17-fantasy-football-analysis-vlookup-in-r/</guid>
+      <description>Packages used:
+library(dplyr)
+library(readxl)
+library(ggplot2)
+Data source: https://fantasydata.com/, uses non-ppr standard fantasy scoring
+Read in Alvin Kamara and Mark Ingram 2018 data, both data sets are in same excel sheets but in different tabs. Kamara is on sheet 3 and Ingram on sheet 4. Use readxl package, and read_excel() function.
+Kamara &amp;lt;- read_excel(akamara , sheet = 3) Mark_Ingram &amp;lt;- read_excel(mingram, sheet = 4) Using dplyr package filter games where A.</description>
     </item>
     
   </channel>

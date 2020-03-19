@@ -13,36 +13,6 @@
     
     
     <item>
-      <title>NFL Fantasy Analysis</title>
-      <link>/2020/03/18/2020-03-18-nfl-fantasy-analysis.knit/</link>
-      <pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/2020/03/18/2020-03-18-nfl-fantasy-analysis.knit/</guid>
-      <description>Packages used:
-library(dplyr)
-library(readxl)
-library(ggplot2)
-Data source: https://fantasydata.com/, uses non-ppr standard fantasy scoring
-Read in Alvin Kamara and Mark Ingram 2018 data, both data sets are in same excel sheets but in different tabs. Kamara is on sheet 3 and Ingram on sheet 4. Use readxl package, and read_excel() function.
-Kamara &amp;lt;- read_excel(akamara , sheet = 3) Mark_Ingram &amp;lt;- read_excel(mingram, sheet = 4)  Using dplyr package filter games where A.</description>
-    </item>
-    
-    <item>
-      <title>NFL Fantasy Analysis</title>
-      <link>/2020/03/18/2020-03-18-nfl-fantasy-analysis.utf8/</link>
-      <pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/2020/03/18/2020-03-18-nfl-fantasy-analysis.utf8/</guid>
-      <description>Packages used:
-library(dplyr)
-library(readxl)
-library(ggplot2)
-Data source: https://fantasydata.com/, uses non-ppr standard fantasy scoring
-Read in Alvin Kamara and Mark Ingram 2018 data, both data sets are in same excel sheets but in different tabs. Kamara is on sheet 3 and Ingram on sheet 4. Use readxl package, and read_excel() function.
-Kamara &amp;lt;- read_excel(akamara , sheet = 3) Mark_Ingram &amp;lt;- read_excel(mingram, sheet = 4)  Using dplyr package filter games where A.</description>
-    </item>
-    
-    <item>
       <title>Webscrape CDC Website with Python</title>
       <link>/2020/03/18/2020-03-18-webscrape-cdc-website-with-python/</link>
       <pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate>
@@ -51,6 +21,21 @@ Kamara &amp;lt;- read_excel(akamara , sheet = 3) Mark_Ingram &amp;lt;- read_exce
       <description>Web Scraping CDC Website using lxml Note: The website URL has changed a couple times during the last month, you will have to update the url as well.
 Import 3rd party packages. Use pip if you don’t have them already installed.
 import requests import datetime from lxml import html # url to scrape data from url = &amp;#39;https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/cases-in-us.html?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fcoronavirus%2F2019-ncov%2Fcases-in-us.html&amp;#39; # path to particular element path = &amp;#39;/html/body/div[6]/main/div[3]/div/div[3]/div[2]/div/div[1]/div/div[2]/ul&amp;#39; # get response object response = requests.</description>
+    </item>
+    
+    <item>
+      <title>Fantasy Football Analysis VLOOKUP in R</title>
+      <link>/2020/03/17/2020-03-17-fantasy-football-analysis-vlookup-in-r/</link>
+      <pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/03/17/2020-03-17-fantasy-football-analysis-vlookup-in-r/</guid>
+      <description>Packages used:
+library(dplyr)
+library(readxl)
+library(ggplot2)
+Data source: https://fantasydata.com/, uses non-ppr standard fantasy scoring
+Read in Alvin Kamara and Mark Ingram 2018 data, both data sets are in same excel sheets but in different tabs. Kamara is on sheet 3 and Ingram on sheet 4. Use readxl package, and read_excel() function.
+Kamara &amp;lt;- read_excel(akamara , sheet = 3) Mark_Ingram &amp;lt;- read_excel(mingram, sheet = 4) Using dplyr package filter games where A.</description>
     </item>
     
     <item>
@@ -79,15 +64,6 @@ School I attended the University of California, Berkeley and graduated in 2009.<
       
       <guid>/project/my-awesome-project/</guid>
       <description>About project Aenean ipsum justo, semper eu nisl ut, pretium tincidunt sem. Praesent et diam sit amet lacus lobortis dictum a id lacus. Quisque hendrerit sit amet turpis eu varius. Ut id lorem ac felis ultrices tincidunt. Pellentesque consequat arcu ac fringilla imperdiet. Phasellus pellentesque, sapien non pulvinar blandit, sapien ante aliquet felis, vel porttitor sapien ante in lacus. Fusce non urna aliquet, malesuada nibh vel, luctus urna. Phasellus ut lacus molestie, varius purus quis, malesuada lorem.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/1/01/01/2020-03-18-nfl-fantasy-analysis/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/1/01/01/2020-03-18-nfl-fantasy-analysis/</guid>
-      <description></description>
     </item>
     
   </channel>

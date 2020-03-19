@@ -1,13 +1,11 @@
 ---
-title: NFL Fantasy Analysis
+title: Fantasy Football Analysis VLOOKUP in R
 author: Alexander Cruz
-date: '2020-03-18'
-slug: nfl-fantasy-analysis
+date: '2020-03-17'
+slug: fantasy-football-analysis-vlookup-in-r
 categories: []
 tags: []
 description: ''
----
-
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
