@@ -18,10 +18,10 @@ categories: []
 import datetime
 from lxml import html</code></pre>
 <pre class="python"><code># url to scrape data from 
-url = &#39;https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/cases-in-us.html?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fcoronavirus%2F2019-ncov%2Fcases-in-us.html&#39;
+url = &#39;https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/cases-in-us.html&#39;
   
 # path to particular element 
-path = &#39;/html/body/div[6]/main/div[3]/div/div[3]/div[2]/div/div[1]/div/div[2]/ul&#39;
+path = &#39;/html/body/div[7]/main/div[3]/div/div[3]/div[2]/div/div[1]/div/div[2]/ul&#39;
   
 # get response object 
 response = requests.get(url) 
@@ -36,10 +36,10 @@ source_code = html.fromstring(byte_data)
 tree = source_code.xpath(path)
 
 # url to scrape data from 
-url2 = &#39;https://www.cdc.gov/coronavirus/2019-ncov/cases-in-us.html&#39;
+url2 = &#39;https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/cases-in-us.html&#39;
 
 # path to particular element 
-path2 = &#39;/html/body/div[6]/main/div[3]/div/div[3]/div[1]/div/p[1]/span&#39;
+path2 = &#39;/html/body/div[7]/main/div[3]/div/div[3]/div[1]/div/p[1]/span&#39;
 
 # jump to preferred html element 
 tree2 = source_code.xpath(path2)
@@ -50,12 +50,12 @@ tree2 = source_code.xpath(path2)
 d = datetime. datetime. today()
 d = d.strftime(&#39;%m-%d-%Y&#39;)
 print(&#39;As of &#39;+str(d)+&#39;, the coronavirus impact on the US is:&#39;)</code></pre>
-<pre><code>## As of 03-18-2020, the coronavirus impact on the US is:</code></pre>
+<pre><code>## As of 03-20-2020, the coronavirus impact on the US is:</code></pre>
 <pre class="python"><code>print(tree[0].text_content()) </code></pre>
 <pre><code>## 
-## Total cases: 7,038
-## Total deaths: 97
+## Total cases: 15,219
+## Total deaths: 201
 ## Jurisdictions reporting cases: 54 (50 states, District of Columbia, Puerto Rico, Guam, and US Virgin Islands)</code></pre>
 <pre class="python"><code>print(tree2[0].text_content())</code></pre>
-<pre><code>## Updated March 18, 2020</code></pre>
+<pre><code>## Updated March 20, 2020</code></pre>
 </div>

@@ -25,10 +25,10 @@ from lxml import html
 
 ```{python}
 # url to scrape data from 
-url = 'https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/cases-in-us.html?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fcoronavirus%2F2019-ncov%2Fcases-in-us.html'
+url = 'https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/cases-in-us.html'
   
 # path to particular element 
-path = '/html/body/div[6]/main/div[3]/div/div[3]/div[2]/div/div[1]/div/div[2]/ul'
+path = '/html/body/div[7]/main/div[3]/div/div[3]/div[2]/div/div[1]/div/div[2]/ul'
   
 # get response object 
 response = requests.get(url) 
@@ -43,10 +43,10 @@ source_code = html.fromstring(byte_data)
 tree = source_code.xpath(path)
 
 # url to scrape data from 
-url2 = 'https://www.cdc.gov/coronavirus/2019-ncov/cases-in-us.html'
+url2 = 'https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/cases-in-us.html'
 
 # path to particular element 
-path2 = '/html/body/div[6]/main/div[3]/div/div[3]/div[1]/div/p[1]/span'
+path2 = '/html/body/div[7]/main/div[3]/div/div[3]/div[1]/div/p[1]/span'
 
 # jump to preferred html element 
 tree2 = source_code.xpath(path2)

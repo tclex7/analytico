@@ -20,7 +20,7 @@
       <guid>/2020/03/18/2020-03-18-webscrape-cdc-website-with-python/</guid>
       <description>Web Scraping CDC Website using lxml Note: The website URL has changed a couple times during the last month, you will have to update the url as well.
 Import 3rd party packages. Use pip if you don’t have them already installed.
-import requests import datetime from lxml import html # url to scrape data from url = &amp;#39;https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/cases-in-us.html?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fcoronavirus%2F2019-ncov%2Fcases-in-us.html&amp;#39; # path to particular element path = &amp;#39;/html/body/div[6]/main/div[3]/div/div[3]/div[2]/div/div[1]/div/div[2]/ul&amp;#39; # get response object response = requests.</description>
+import requests import datetime from lxml import html # url to scrape data from url = &amp;#39;https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/cases-in-us.html&amp;#39; # path to particular element path = &amp;#39;/html/body/div[7]/main/div[3]/div/div[3]/div[2]/div/div[1]/div/div[2]/ul&amp;#39; # get response object response = requests.</description>
     </item>
     
     <item>
