@@ -1,0 +1,97 @@
+---
+title: Replace Strings in R using str_replace
+author: Alexander Cruz
+date: '2020-03-21'
+slug: replace-strings-in-r-using-str-replace
+categories: []
+tags: []
+description: ''
+---
+
+
+
+<div id="replace-strings-in-r-using-str_replace" class="section level2">
+<h2>Replace Strings in R using str_replace</h2>
+<p>3rd party packages</p>
+<pre class="r"><code>library(stringr)
+library(readr)
+library(dplyr)</code></pre>
+<p>Read in Data</p>
+<pre class="r"><code>head(df)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   id                   dateAdded           dateUpdated         address          
+##   &lt;chr&gt;                &lt;dttm&gt;              &lt;dttm&gt;              &lt;chr&gt;            
+## 1 AVwc252WIN2L1WUfpqLP 2016-10-30 21:42:42 2018-09-10 21:06:27 5921 Valencia Cir
+## 2 AVwc252WIN2L1WUfpqLP 2016-10-30 21:42:42 2018-09-10 21:06:27 5921 Valencia Cir
+## 3 AVwc252WIN2L1WUfpqLP 2016-10-30 21:42:42 2018-09-10 21:06:27 5921 Valencia Cir
+## 4 AVwdOclqIN2L1WUfti38 2015-11-28 19:19:35 2018-09-10 21:06:16 7520 Teague Rd   
+## 5 AVwdOclqIN2L1WUfti38 2015-11-28 19:19:35 2018-09-10 21:06:16 7520 Teague Rd   
+## 6 AVwdOclqIN2L1WUfti38 2015-11-28 19:19:35 2018-09-10 21:06:16 7520 Teague Rd</code></pre>
+<p>Replace the first pattern in a single column</p>
+<pre class="r"><code>df1 &lt;- df %&gt;% mutate(dateAdded = str_replace(string = dateAdded, pattern = &quot;-&quot;,replacement = &quot;.&quot;))
+head(df1)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   id                   dateAdded           dateUpdated         address          
+##   &lt;chr&gt;                &lt;chr&gt;               &lt;dttm&gt;              &lt;chr&gt;            
+## 1 AVwc252WIN2L1WUfpqLP 2016.10-30 21:42:42 2018-09-10 21:06:27 5921 Valencia Cir
+## 2 AVwc252WIN2L1WUfpqLP 2016.10-30 21:42:42 2018-09-10 21:06:27 5921 Valencia Cir
+## 3 AVwc252WIN2L1WUfpqLP 2016.10-30 21:42:42 2018-09-10 21:06:27 5921 Valencia Cir
+## 4 AVwdOclqIN2L1WUfti38 2015.11-28 19:19:35 2018-09-10 21:06:16 7520 Teague Rd   
+## 5 AVwdOclqIN2L1WUfti38 2015.11-28 19:19:35 2018-09-10 21:06:16 7520 Teague Rd   
+## 6 AVwdOclqIN2L1WUfti38 2015.11-28 19:19:35 2018-09-10 21:06:16 7520 Teague Rd</code></pre>
+<p>Replace all with set pattern in a single column</p>
+<pre class="r"><code>df2 &lt;- df %&gt;% mutate(dateAdded = str_replace_all(string = dateAdded, pattern = &quot;-&quot;,replacement = &quot;.&quot;))
+head(df2)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   id                   dateAdded           dateUpdated         address          
+##   &lt;chr&gt;                &lt;chr&gt;               &lt;dttm&gt;              &lt;chr&gt;            
+## 1 AVwc252WIN2L1WUfpqLP 2016.10.30 21:42:42 2018-09-10 21:06:27 5921 Valencia Cir
+## 2 AVwc252WIN2L1WUfpqLP 2016.10.30 21:42:42 2018-09-10 21:06:27 5921 Valencia Cir
+## 3 AVwc252WIN2L1WUfpqLP 2016.10.30 21:42:42 2018-09-10 21:06:27 5921 Valencia Cir
+## 4 AVwdOclqIN2L1WUfti38 2015.11.28 19:19:35 2018-09-10 21:06:16 7520 Teague Rd   
+## 5 AVwdOclqIN2L1WUfti38 2015.11.28 19:19:35 2018-09-10 21:06:16 7520 Teague Rd   
+## 6 AVwdOclqIN2L1WUfti38 2015.11.28 19:19:35 2018-09-10 21:06:16 7520 Teague Rd</code></pre>
+<p>Replace multiple patterns in a single column</p>
+<pre class="r"><code>df3 &lt;- df %&gt;% mutate(dateAdded = str_replace_all(string = dateAdded, pattern = &quot;[-:]&quot;,replacement = &quot;hey&quot;))
+head(df3)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   id                 dateAdded               dateUpdated         address        
+##   &lt;chr&gt;              &lt;chr&gt;                   &lt;dttm&gt;              &lt;chr&gt;          
+## 1 AVwc252WIN2L1WUfp… 2016hey10hey30 21hey42… 2018-09-10 21:06:27 5921 Valencia …
+## 2 AVwc252WIN2L1WUfp… 2016hey10hey30 21hey42… 2018-09-10 21:06:27 5921 Valencia …
+## 3 AVwc252WIN2L1WUfp… 2016hey10hey30 21hey42… 2018-09-10 21:06:27 5921 Valencia …
+## 4 AVwdOclqIN2L1WUft… 2015hey11hey28 19hey19… 2018-09-10 21:06:16 7520 Teague Rd 
+## 5 AVwdOclqIN2L1WUft… 2015hey11hey28 19hey19… 2018-09-10 21:06:16 7520 Teague Rd 
+## 6 AVwdOclqIN2L1WUft… 2015hey11hey28 19hey19… 2018-09-10 21:06:16 7520 Teague Rd</code></pre>
+<p>Remove muliple patterns in a single colomn</p>
+<pre class="r"><code>df4 &lt;- df %&gt;% mutate(dateAdded = str_replace_all(string = dateAdded, pattern = &quot;[-:]&quot;,replacement = &quot;&quot;))
+head(df4)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   id                   dateAdded       dateUpdated         address          
+##   &lt;chr&gt;                &lt;chr&gt;           &lt;dttm&gt;              &lt;chr&gt;            
+## 1 AVwc252WIN2L1WUfpqLP 20161030 214242 2018-09-10 21:06:27 5921 Valencia Cir
+## 2 AVwc252WIN2L1WUfpqLP 20161030 214242 2018-09-10 21:06:27 5921 Valencia Cir
+## 3 AVwc252WIN2L1WUfpqLP 20161030 214242 2018-09-10 21:06:27 5921 Valencia Cir
+## 4 AVwdOclqIN2L1WUfti38 20151128 191935 2018-09-10 21:06:16 7520 Teague Rd   
+## 5 AVwdOclqIN2L1WUfti38 20151128 191935 2018-09-10 21:06:16 7520 Teague Rd   
+## 6 AVwdOclqIN2L1WUfti38 20151128 191935 2018-09-10 21:06:16 7520 Teague Rd</code></pre>
+<p>Remove a single pattern in the full datafame</p>
+<pre class="r"><code>df5 &lt;- data.frame(lapply(df, function(x) {
+               str_replace_all(x, &quot;-&quot;, &quot;HELP&quot;)
+                }))
+head(df5)</code></pre>
+<pre><code>##                     id                 dateAdded               dateUpdated
+## 1 AVwc252WIN2L1WUfpqLP 2016HELP10HELP30 21:42:42 2018HELP09HELP10 21:06:27
+## 2 AVwc252WIN2L1WUfpqLP 2016HELP10HELP30 21:42:42 2018HELP09HELP10 21:06:27
+## 3 AVwc252WIN2L1WUfpqLP 2016HELP10HELP30 21:42:42 2018HELP09HELP10 21:06:27
+## 4 AVwdOclqIN2L1WUfti38 2015HELP11HELP28 19:19:35 2018HELP09HELP10 21:06:16
+## 5 AVwdOclqIN2L1WUfti38 2015HELP11HELP28 19:19:35 2018HELP09HELP10 21:06:16
+## 6 AVwdOclqIN2L1WUfti38 2015HELP11HELP28 19:19:35 2018HELP09HELP10 21:06:16
+##             address
+## 1 5921 Valencia Cir
+## 2 5921 Valencia Cir
+## 3 5921 Valencia Cir
+## 4    7520 Teague Rd
+## 5    7520 Teague Rd
+## 6    7520 Teague Rd</code></pre>
+</div>

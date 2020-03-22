@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>My Name</copyright>
-    <lastBuildDate>Wed, 18 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 21 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Replace Strings in R using str_replace</title>
+      <link>/2020/03/21/2020-03-21-replace-strings-in-r-using-str-replace/</link>
+      <pubDate>Sat, 21 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/03/21/2020-03-21-replace-strings-in-r-using-str-replace/</guid>
+      <description>Replace Strings in R using str_replace 3rd party packages
+library(stringr) library(readr) library(dplyr) Read in Data
+head(df) ## # A tibble: 6 x 4 ## id dateAdded dateUpdated address ## &amp;lt;chr&amp;gt; &amp;lt;dttm&amp;gt; &amp;lt;dttm&amp;gt; &amp;lt;chr&amp;gt; ## 1 AVwc252WIN2L1WUfpqLP 2016-10-30 21:42:42 2018-09-10 21:06:27 5921 Valencia Cir ## 2 AVwc252WIN2L1WUfpqLP 2016-10-30 21:42:42 2018-09-10 21:06:27 5921 Valencia Cir ## 3 AVwc252WIN2L1WUfpqLP 2016-10-30 21:42:42 2018-09-10 21:06:27 5921 Valencia Cir ## 4 AVwdOclqIN2L1WUfti38 2015-11-28 19:19:35 2018-09-10 21:06:16 7520 Teague Rd ## 5 AVwdOclqIN2L1WUfti38 2015-11-28 19:19:35 2018-09-10 21:06:16 7520 Teague Rd ## 6 AVwdOclqIN2L1WUfti38 2015-11-28 19:19:35 2018-09-10 21:06:16 7520 Teague Rd Replace the first pattern in a single column</description>
+    </item>
     
     <item>
       <title>Webscrape CDC Website with Python</title>

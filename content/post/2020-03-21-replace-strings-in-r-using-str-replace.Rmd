@@ -1,0 +1,63 @@
+---
+title: Replace Strings in R using str_replace
+author: Alexander Cruz
+date: '2020-03-21'
+slug: replace-strings-in-r-using-str-replace
+categories: []
+tags: []
+description: ''
+---
+## Replace Strings in R using str_replace
+
+3rd party packages
+```{r, warning=FALSE, message=FALSE}
+library(stringr)
+library(readr)
+library(dplyr)
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+setwd('/Users/acruz/My Files/R Project/str_replace')
+df <- read_csv("Datafiniti_Hotel_Reviews.csv")
+df <- df %>% select(1:4)
+```
+
+Read in Data
+```{r}
+head(df)
+```
+
+
+Replace the first pattern in a single column 
+```{r}
+df1 <- df %>% mutate(dateAdded = str_replace(string = dateAdded, pattern = "-",replacement = "."))
+head(df1)
+```
+
+Replace all with set pattern in a single column
+```{r}
+df2 <- df %>% mutate(dateAdded = str_replace_all(string = dateAdded, pattern = "-",replacement = "."))
+head(df2)
+```
+
+
+Replace multiple patterns in a single column
+```{r}
+df3 <- df %>% mutate(dateAdded = str_replace_all(string = dateAdded, pattern = "[-:]",replacement = "hey"))
+head(df3)
+```
+
+Remove muliple patterns in a single colomn 
+```{r}
+df4 <- df %>% mutate(dateAdded = str_replace_all(string = dateAdded, pattern = "[-:]",replacement = ""))
+head(df4)
+```
+
+Remove a single pattern in the full datafame 
+```{r}
+df5 <- data.frame(lapply(df, function(x) {
+               str_replace_all(x, "-", "HELP")
+                }))
+head(df5)
+```
