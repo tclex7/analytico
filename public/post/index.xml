@@ -7,10 +7,24 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>My Name</copyright>
-    <lastBuildDate>Sat, 21 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 10 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Covid-19 US County Visual in R</title>
+      <link>/2020/04/10/2020-04-10-covid-19-us-county-visual-in-r/</link>
+      <pubDate>Fri, 10 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/04/10/2020-04-10-covid-19-us-county-visual-in-r/</guid>
+      <description>This tutorial will pull Covid-19 virus data by US County from New York Times.
+Make sure correct packages are installed
+if(!require(readr)) install.packages(&amp;quot;readr&amp;quot;, repos = &amp;quot;http://cran.us.r-project.org&amp;quot;) if(!require(dplyr)) install.packages(&amp;quot;dplyr&amp;quot;, repos = &amp;quot;http://cran.us.r-project.org&amp;quot;) if(!require(ggplot2)) install.packages(&amp;quot;ggplot2&amp;quot;, repos = &amp;quot;http://cran.us.r-project.org&amp;quot;) Load packages
+library(readr) library(dplyr) library(ggplot2) Read data into R
+covid &amp;lt;- read_csv(&amp;#39;https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv&amp;#39;) Select my County, we will use Los Angeles as an example.
+mycounty &amp;lt;- &amp;#39;Los Angeles&amp;#39; Check make sure Los Angeles is part of the dataset, this will be a true or false.</description>
+    </item>
     
     <item>
       <title>Replace Strings in R using str_replace</title>
