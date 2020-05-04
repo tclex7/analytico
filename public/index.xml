@@ -7,10 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>My Name</copyright>
-    <lastBuildDate>Fri, 10 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 03 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Get Longitude and Latitude in R</title>
+      <link>/2020/05/03/2020-05-03-get-longitude-and-latitude-in-r/</link>
+      <pubDate>Sun, 03 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/05/03/2020-05-03-get-longitude-and-latitude-in-r/</guid>
+      <description>This tutorial will show you how to retrieve longitude and latitude by simply providing an address.
+You will start by installing RDSTK package from github using devtools. If you don’t have devtools, you will also need to install
+devtools::install_github(&amp;quot;rtelmore/RDSTK&amp;quot;) Next we will call RDSTK package along with dplyr package
+library(RDSTK) library(dplyr) We will use street2coordinates function to pull lat and long based on location.</description>
+    </item>
     
     <item>
       <title>Covid-19 US County Visual in R</title>

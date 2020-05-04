@@ -1,0 +1,64 @@
+---
+title: Get Longitude and Latitude in R
+author: Alexander Cruz
+date: '2020-05-03'
+slug: get-longitude-and-latitude-in-r
+categories: []
+tags: []
+description: ''
+---
+
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="/rmarkdown-libs/leaflet/leaflet.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/leaflet/leaflet.js"></script>
+<link href="/rmarkdown-libs/leafletfix/leafletfix.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/Proj4Leaflet/proj4-compressed.js"></script>
+<script src="/rmarkdown-libs/Proj4Leaflet/proj4leaflet.js"></script>
+<link href="/rmarkdown-libs/rstudio_leaflet/rstudio_leaflet.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/leaflet-binding/leaflet.js"></script>
+
+
+<p>This tutorial will show you how to retrieve longitude and latitude by simply providing an address.</p>
+<p>You will start by installing RDSTK package from github using devtools. If you don’t have devtools, you will also need to install</p>
+<pre class="r"><code>devtools::install_github(&quot;rtelmore/RDSTK&quot;)</code></pre>
+<p>Next we will call RDSTK package along with dplyr package</p>
+<pre class="r"><code>library(RDSTK)
+library(dplyr)</code></pre>
+<p>We will use street2coordinates function to pull lat and long based on location. The output is a dataframe. We will use Disneyland location as an example.</p>
+<pre class="r"><code>location = &#39;1313 Disneyland Dr, Anaheim, CA 92802, United States&#39;
+street2coordinates(location)</code></pre>
+<pre><code>##                                           full.address country_code3 latitude
+## 1 1313 Disneyland Dr, Anaheim, CA 92802, United States           USA 33.81806
+##    country_name longitude    street_address region confidence street_number
+## 1 United States -117.9222 999 Disneyland Dr     CA      0.805           999
+##   locality   street_name fips_county country_code
+## 1  Anaheim Disneyland Dr       06059           US</code></pre>
+<p>Lets now pull lat and long using dplyr:: select function. We will use the Los Angeles Staples Center in this example.</p>
+<pre class="r"><code>df = street2coordinates(&#39;1111 S Figueroa St, Los Angeles, CA 90015, United States&#39;)
+df = df %&gt;% select(full.address, latitude, longitude)
+print(df)</code></pre>
+<pre><code>##                                               full.address latitude longitude
+## 1 1111 S Figueroa St, Los Angeles, CA 90015, United States 34.04355 -118.2654</code></pre>
+<p>We can also call multiple addresses in a single function</p>
+<pre class="r"><code>location_example = c(&#39;1111 S Figueroa St, Los Angeles, CA 90015, United States&#39;, 
+                     &#39;1313 Disneyland Dr, Anaheim, CA 92802, United States&#39;)
+geocode  &lt;- do.call(rbind, lapply(location_example, street2coordinates))
+geocode  &lt;- geocode %&gt;% select(full.address, longitude, latitude)
+label &lt;- c(&#39;Staples Center&#39;, &#39;Disneyland&#39;)
+geocode &lt;- data.frame(geocode, label=label)
+print(geocode)</code></pre>
+<pre><code>##                                               full.address longitude latitude
+## 1 1111 S Figueroa St, Los Angeles, CA 90015, United States -118.2654 34.04355
+## 2     1313 Disneyland Dr, Anaheim, CA 92802, United States -117.9222 33.81806
+##            label
+## 1 Staples Center
+## 2     Disneyland</code></pre>
+<pre class="r"><code>library(leaflet)
+
+m &lt;- leaflet() %&gt;%
+  addTiles() %&gt;%  # Add default OpenStreetMap map tiles
+  addMarkers(lng= geocode$longitude, lat=geocode$latitude, popup=geocode$label)
+m</code></pre>
+<div id="htmlwidget-1" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[34.043555,33.818062],[-118.26539,-117.922231],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Staples Center","Disneyland"],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[33.818062,34.043555],"lng":[-118.26539,-117.922231]}},"evals":[],"jsHooks":[]}</script>
