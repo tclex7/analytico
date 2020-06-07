@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>My Name</copyright>
-    <lastBuildDate>Sun, 03 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 06 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Analyze Zillow Housing Sale Prices by County</title>
+      <link>/2020/06/06/2020-06-06-analyze-zillow-housing-sale-prices-by-county/</link>
+      <pubDate>Sat, 06 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/06/06/2020-06-06-analyze-zillow-housing-sale-prices-by-county/</guid>
+      <description>This script will assist in analyzing median home sales prices per county
+if(!require(readr)) install.packages(&amp;quot;readr&amp;quot;, repos = &amp;quot;http://cran.us.r-project.org&amp;quot;) if(!require(dplyr)) install.packages(&amp;quot;dplyr&amp;quot;, repos = &amp;quot;http://cran.us.r-project.org&amp;quot;) if(!require(lubridate)) install.packages(&amp;quot;lubridate&amp;quot;, repos = &amp;quot;http://cran.us.r-project.org&amp;quot;) if(!require(tidyr)) install.packages(&amp;quot;tidyr&amp;quot;, repos = &amp;quot;http://cran.us.r-project.org&amp;quot;) if(!require(stringr)) install.packages(&amp;quot;stringr&amp;quot;, repos = &amp;quot;http://cran.us.r-project.org&amp;quot;) if(!require(ggplot2)) install.packages(&amp;quot;ggplot2&amp;quot;, repos = &amp;quot;http://cran.us.r-project.org&amp;quot;) if(!require(ggthemes)) install.packages(&amp;quot;ggthemes&amp;quot;, repos = &amp;quot;http://cran.us.r-project.org&amp;quot;) library(readr) library(dplyr) library(lubridate) library(tidyr) library(stringr) library(ggplot2) library(ggthemes) #Clear current enviornment rm(list = ls()) #Disable scientific notation options(scipen=999) Pull in data from https://www.zillow.com/research/data/</description>
+    </item>
     
     <item>
       <title>Get Longitude and Latitude in R</title>

@@ -1,0 +1,80 @@
+---
+title: Analyze Zillow Housing Sale Prices by County
+author: Alexander Cruz
+date: '2020-06-06'
+slug: analyze-zillow-housing-sale-prices-by-county
+categories: []
+tags: []
+description: ''
+---
+
+
+
+<p>This script will assist in analyzing median home sales prices per county</p>
+<pre class="r"><code>if(!require(readr)) install.packages(&quot;readr&quot;, repos = &quot;http://cran.us.r-project.org&quot;)
+if(!require(dplyr)) install.packages(&quot;dplyr&quot;, repos = &quot;http://cran.us.r-project.org&quot;)
+if(!require(lubridate)) install.packages(&quot;lubridate&quot;, repos = &quot;http://cran.us.r-project.org&quot;)
+if(!require(tidyr)) install.packages(&quot;tidyr&quot;, repos = &quot;http://cran.us.r-project.org&quot;)
+if(!require(stringr)) install.packages(&quot;stringr&quot;, repos = &quot;http://cran.us.r-project.org&quot;)
+if(!require(ggplot2)) install.packages(&quot;ggplot2&quot;, repos = &quot;http://cran.us.r-project.org&quot;)
+if(!require(ggthemes)) install.packages(&quot;ggthemes&quot;, repos = &quot;http://cran.us.r-project.org&quot;)
+
+library(readr)
+library(dplyr)
+library(lubridate)
+library(tidyr)
+library(stringr)
+library(ggplot2)
+library(ggthemes)
+#Clear current enviornment
+rm(list = ls())
+
+#Disable scientific notation
+options(scipen=999)</code></pre>
+<p>Pull in data from <a href="https://www.zillow.com/research/data/" class="uri">https://www.zillow.com/research/data/</a></p>
+<pre class="r"><code>sales &lt;- read.csv(&quot;http://files.zillowstatic.com/research/public/County/Sale_Prices_County.csv&quot;, 
+                  header = TRUE,
+                  stringsAsFactors = FALSE)</code></pre>
+<p>Clean up the data</p>
+<pre class="r"><code>#Remove columns that I don&#39;t need
+sales2 &lt;- sales %&gt;% select(-RegionID, -SizeRank)
+
+#Gather the columns to make the dataset tidy, create a new column that will give us county and state, remove months
+#that do not have sales data.
+sales2 &lt;- sales2 %&gt;% 
+  gather(Month, Sales, 3:ncol(sales2)) %&gt;% 
+  arrange(desc(Month))%&gt;%
+  mutate(CountyState= paste0(RegionName,&quot;, &quot;,StateName), Sales= (Sales)) %&gt;% 
+  filter(!is.na(Sales))
+
+#Remove X from Month column name
+sales2$Month &lt;- str_replace(sales2$Month, &quot;X&quot;, &quot;&quot;)
+
+#convert Month column from character to date.
+sales2$Month &lt;- ymd(sales2$Month, truncated = 2)</code></pre>
+<p>Type in your county</p>
+<pre class="r"><code>your_county &lt;- &quot;Los Angeles County, California&quot; </code></pre>
+<p>Line plot of your selected county</p>
+<pre class="r"><code>sales2 %&gt;% filter(CountyState==your_county) %&gt;% ggplot(aes(x=Month, y=Sales, group=1)) +
+  geom_line() +
+  geom_line(linetype = &quot;dashed&quot;, color = &quot;red&quot;) +
+  ggtitle(your_county) +
+  theme_economist()</code></pre>
+<p><img src="/post/2020-06-06-analyze-zillow-housing-sale-prices-by-county_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Your county in a table format</p>
+<pre class="r"><code>sales3 &lt;- sales2 %&gt;% filter(CountyState==your_county) %&gt;% arrange(desc(Month))
+head(sales3)</code></pre>
+<pre><code>##           RegionName  StateName      Month  Sales
+## 1 Los Angeles County California 2020-02-01 639900
+## 2 Los Angeles County California 2020-01-01 633000
+## 3 Los Angeles County California 2019-12-01 625400
+## 4 Los Angeles County California 2019-11-01 616500
+## 5 Los Angeles County California 2019-10-01 611300
+## 6 Los Angeles County California 2019-09-01 613100
+##                      CountyState
+## 1 Los Angeles County, California
+## 2 Los Angeles County, California
+## 3 Los Angeles County, California
+## 4 Los Angeles County, California
+## 5 Los Angeles County, California
+## 6 Los Angeles County, California</code></pre>
