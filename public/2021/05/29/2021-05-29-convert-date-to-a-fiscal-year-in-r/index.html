@@ -3,8 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>About &middot; Analytico Hub</title>
-        <meta name="description" content="Things about me.">
+        <title>Convert Date to a Fiscal Year in R &middot; Analytico Hub</title>
+        <meta name="description" content="You will need tidyverse and lubidate package.
+if(!require(tidyverse)) install.packages(&quot;tidyverse&quot;, repos = &quot;http://cran.us.r-project.org&quot;) if(!require(lubridate)) install.packages(&quot;lubridate&quot;, repos = &quot;http://cran.us.r-project.org&quot;) Using sample dates use fiscal_state function. It will only work for quarter, and not for year.
+x &lt;- ymd(c(&quot;2009-04-01&quot;, &quot;2011-06-03&quot;, &quot;2007-10-02&quot;, &quot;2012-12-25&quot;)) quarter &lt;- quarter(x, with_year = TRUE, fiscal_start = 10) print(quarter) ## [1] 2009.3 2011.3 2008.1 2013.1 Now you can use str_sub to pull the fiscal year only.
+fiscal_year &lt;- stringr::str_sub(quarter, 1, 4) print(fiscal_year) ## [1] &quot;2009&quot; &quot;2011&quot; &quot;2008&quot; &quot;2013&quot; Putting it all together in a table">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
         <meta name="generator" content="Hugo 0.58.1" />
@@ -101,28 +104,95 @@ if (!doNotTrack) {
 
 
 <div class="container">
-    <article class="post-container">
+    <article class="post-container" itemscope="" itemtype="http://schema.org/BlogPosting">
         <header class="post-header">
-    <h1 class="post-title">About</h1>
+    <h1 class="post-title" itemprop="name headline">Convert Date to a Fiscal Year in R</h1>
     
-        <p class="post-description">Things about me.</p>
+    <p class="post-date">
+        <span>Published <time datetime="2021-05-29" itemprop="datePublished">Sat, May 29, 2021</time></span>
+        <span>by</span>
+        <span itemscope="" itemprop="author" itemtype="https://schema.org/Person">
+            <span itemprop="name">
+                <a href="https://google.com/&#43;XXX" itemprop="url" rel="author">Alexander Cruz</a>
+            </span>
+        </span>
+    </p>
+    
+        <p class="post-reading post-line">
+            <span>Estimated reading time: 1 min</span>
+        </p>
     
 </header>
 
-        <div class="post-content clearfix">
+        <div class="post-content clearfix" itemprop="articleBody">
     
 
     
 
-<h2 id="about">About</h2>
 
-<p>My name is Alex Cruz.  I have been working as a data analyst since 2016.  My favorite program to write code in is R, but also use Python and Julia.</p>
+<p>You will need tidyverse and lubidate package.</p>
+<pre class="r"><code>if(!require(tidyverse)) install.packages(&quot;tidyverse&quot;, repos = &quot;http://cran.us.r-project.org&quot;)
+if(!require(lubridate)) install.packages(&quot;lubridate&quot;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
+<p>Using sample dates use fiscal_state function. It will only work for quarter, and not for year.</p>
+<pre class="r"><code>x &lt;- ymd(c(&quot;2009-04-01&quot;, &quot;2011-06-03&quot;, &quot;2007-10-02&quot;, &quot;2012-12-25&quot;))
 
-<h2 id="school">School</h2>
+quarter &lt;- quarter(x, with_year = TRUE, fiscal_start = 10)
 
-<p>I attended the University of California, Berkeley and graduated in 2009.</p>
+print(quarter)</code></pre>
+<pre><code>## [1] 2009.3 2011.3 2008.1 2013.1</code></pre>
+<p>Now you can use str_sub to pull the fiscal year only.</p>
+<pre class="r"><code>fiscal_year &lt;- stringr::str_sub(quarter, 1, 4)
+print(fiscal_year)</code></pre>
+<pre><code>## [1] &quot;2009&quot; &quot;2011&quot; &quot;2008&quot; &quot;2013&quot;</code></pre>
+<p>Putting it all together in a table</p>
+<pre class="r"><code>data.frame(x, quarter, fiscal_year)</code></pre>
+<pre><code>##            x quarter fiscal_year
+## 1 2009-04-01  2009.3        2009
+## 2 2011-06-03  2011.3        2011
+## 3 2007-10-02  2008.1        2008
+## 4 2012-12-25  2013.1        2013</code></pre>
+<p>Fiscal Year with one line of code</p>
+<pre class="r"><code>str_sub(quarter(x, with_year = TRUE, fiscal_start = 10), 1, 4)</code></pre>
+<pre><code>## [1] &quot;2009&quot; &quot;2011&quot; &quot;2008&quot; &quot;2013&quot;</code></pre>
 
 </div>
+
+        <footer class="post-footer clearfix">
+    
+
+    <div class="share">
+        
+            <a class="icon-twitter" href="https://twitter.com/share?text=Convert%20Date%20to%20a%20Fiscal%20Year%20in%20R&url=%2f2021%2f05%2f29%2f2021-05-29-convert-date-to-a-fiscal-year-in-r%2f"
+                onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fa fa-twitter"></i>
+                <span class="hidden">Twitter</span>
+            </a>
+        
+
+        
+            <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2f2021%2f05%2f29%2f2021-05-29-convert-date-to-a-fiscal-year-in-r%2f"
+                onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                <i class="fa fa-facebook"></i>
+                <span class="hidden">Facebook</span>
+            </a>
+        
+
+        
+            <a class="icon-google-plus" href="https://plus.google.com/share?url=%2f2021%2f05%2f29%2f2021-05-29-convert-date-to-a-fiscal-year-in-r%2f"
+              onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+              <i class="fa fa-google-plus"></i>
+                <span class="hidden">Google+</span>
+            </a>
+        
+        
+    </div>
+</footer>
+
+        
+    <div class="comments">
+        
+    </div>
+
     </article>
 </div>
 

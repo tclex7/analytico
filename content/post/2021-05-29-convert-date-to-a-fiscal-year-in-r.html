@@ -1,0 +1,36 @@
+---
+title: Convert Date to a Fiscal Year in R
+author: Alexander Cruz
+date: '2021-05-29'
+slug: convert-date-to-a-fiscal-year-in-r
+categories: []
+tags: []
+description: ''
+---
+
+
+
+<p>You will need tidyverse and lubidate package.</p>
+<pre class="r"><code>if(!require(tidyverse)) install.packages(&quot;tidyverse&quot;, repos = &quot;http://cran.us.r-project.org&quot;)
+if(!require(lubridate)) install.packages(&quot;lubridate&quot;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
+<p>Using sample dates use fiscal_state function. It will only work for quarter, and not for year.</p>
+<pre class="r"><code>x &lt;- ymd(c(&quot;2009-04-01&quot;, &quot;2011-06-03&quot;, &quot;2007-10-02&quot;, &quot;2012-12-25&quot;))
+
+quarter &lt;- quarter(x, with_year = TRUE, fiscal_start = 10)
+
+print(quarter)</code></pre>
+<pre><code>## [1] 2009.3 2011.3 2008.1 2013.1</code></pre>
+<p>Now you can use str_sub to pull the fiscal year only.</p>
+<pre class="r"><code>fiscal_year &lt;- stringr::str_sub(quarter, 1, 4)
+print(fiscal_year)</code></pre>
+<pre><code>## [1] &quot;2009&quot; &quot;2011&quot; &quot;2008&quot; &quot;2013&quot;</code></pre>
+<p>Putting it all together in a table</p>
+<pre class="r"><code>data.frame(x, quarter, fiscal_year)</code></pre>
+<pre><code>##            x quarter fiscal_year
+## 1 2009-04-01  2009.3        2009
+## 2 2011-06-03  2011.3        2011
+## 3 2007-10-02  2008.1        2008
+## 4 2012-12-25  2013.1        2013</code></pre>
+<p>Fiscal Year with one line of code</p>
+<pre class="r"><code>str_sub(quarter(x, with_year = TRUE, fiscal_start = 10), 1, 4)</code></pre>
+<pre><code>## [1] &quot;2009&quot; &quot;2011&quot; &quot;2008&quot; &quot;2013&quot;</code></pre>

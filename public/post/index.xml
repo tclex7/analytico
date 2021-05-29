@@ -7,10 +7,33 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>My Name</copyright>
-    <lastBuildDate>Sat, 06 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 29 May 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Convert Date to a Fiscal Year in R</title>
+      <link>/2021/05/29/2021-05-29-convert-date-to-a-fiscal-year-in-r/</link>
+      <pubDate>Sat, 29 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/05/29/2021-05-29-convert-date-to-a-fiscal-year-in-r/</guid>
+      <description>You will need tidyverse and lubidate package.
+if(!require(tidyverse)) install.packages(&amp;quot;tidyverse&amp;quot;, repos = &amp;quot;http://cran.us.r-project.org&amp;quot;) if(!require(lubridate)) install.packages(&amp;quot;lubridate&amp;quot;, repos = &amp;quot;http://cran.us.r-project.org&amp;quot;) Using sample dates use fiscal_state function. It will only work for quarter, and not for year.
+x &amp;lt;- ymd(c(&amp;quot;2009-04-01&amp;quot;, &amp;quot;2011-06-03&amp;quot;, &amp;quot;2007-10-02&amp;quot;, &amp;quot;2012-12-25&amp;quot;)) quarter &amp;lt;- quarter(x, with_year = TRUE, fiscal_start = 10) print(quarter) ## [1] 2009.3 2011.3 2008.1 2013.1 Now you can use str_sub to pull the fiscal year only.
+fiscal_year &amp;lt;- stringr::str_sub(quarter, 1, 4) print(fiscal_year) ## [1] &amp;quot;2009&amp;quot; &amp;quot;2011&amp;quot; &amp;quot;2008&amp;quot; &amp;quot;2013&amp;quot; Putting it all together in a table</description>
+    </item>
+    
+    <item>
+      <title>Export Multiple Tables to Excel</title>
+      <link>/2021/05/29/2021-05-29-export-multiple-tables-to-excel/</link>
+      <pubDate>Sat, 29 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/05/29/2021-05-29-export-multiple-tables-to-excel/</guid>
+      <description>Get open xlsx package
+if(!require(openxlsx)) install.packages(&amp;quot;openxlsx&amp;quot;, repos = &amp;quot;http://cran.us.r-project.org&amp;quot;) ## Loading required package: openxlsx Get 3 sample datasets to write into 1 excel document. 1 dataset per excel tab.
+data(&amp;quot;faithful&amp;quot;) head(faithful) ## eruptions waiting ## 1 3.600 79 ## 2 1.800 54 ## 3 3.333 74 ## 4 2.283 62 ## 5 4.533 85 ## 6 2.883 55 data(&amp;quot;iris&amp;quot;) head(iris) ## Sepal.Length Sepal.Width Petal.Length Petal.Width Species ## 1 5.1 3.</description>
+    </item>
     
     <item>
       <title>Analyze Zillow Housing Sale Prices by County</title>

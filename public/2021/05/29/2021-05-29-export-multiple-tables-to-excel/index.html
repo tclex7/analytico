@@ -3,8 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>About &middot; Analytico Hub</title>
-        <meta name="description" content="Things about me.">
+        <title>Export Multiple Tables to Excel &middot; Analytico Hub</title>
+        <meta name="description" content="Get open xlsx package
+if(!require(openxlsx)) install.packages(&quot;openxlsx&quot;, repos = &quot;http://cran.us.r-project.org&quot;) ## Loading required package: openxlsx Get 3 sample datasets to write into 1 excel document. 1 dataset per excel tab.
+data(&quot;faithful&quot;) head(faithful) ## eruptions waiting ## 1 3.600 79 ## 2 1.800 54 ## 3 3.333 74 ## 4 2.283 62 ## 5 4.533 85 ## 6 2.883 55 data(&quot;iris&quot;) head(iris) ## Sepal.Length Sepal.Width Petal.Length Petal.Width Species ## 1 5.1 3.">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
         <meta name="generator" content="Hugo 0.58.1" />
@@ -101,28 +103,110 @@ if (!doNotTrack) {
 
 
 <div class="container">
-    <article class="post-container">
+    <article class="post-container" itemscope="" itemtype="http://schema.org/BlogPosting">
         <header class="post-header">
-    <h1 class="post-title">About</h1>
+    <h1 class="post-title" itemprop="name headline">Export Multiple Tables to Excel</h1>
     
-        <p class="post-description">Things about me.</p>
+    <p class="post-date">
+        <span>Published <time datetime="2021-05-29" itemprop="datePublished">Sat, May 29, 2021</time></span>
+        <span>by</span>
+        <span itemscope="" itemprop="author" itemtype="https://schema.org/Person">
+            <span itemprop="name">
+                <a href="https://google.com/&#43;XXX" itemprop="url" rel="author">Alexander Cruz</a>
+            </span>
+        </span>
+    </p>
+    
+        <p class="post-reading post-line">
+            <span>Estimated reading time: 1 min</span>
+        </p>
     
 </header>
 
-        <div class="post-content clearfix">
+        <div class="post-content clearfix" itemprop="articleBody">
     
 
     
 
-<h2 id="about">About</h2>
 
-<p>My name is Alex Cruz.  I have been working as a data analyst since 2016.  My favorite program to write code in is R, but also use Python and Julia.</p>
-
-<h2 id="school">School</h2>
-
-<p>I attended the University of California, Berkeley and graduated in 2009.</p>
+<p>Get open xlsx package</p>
+<pre class="r"><code>if(!require(openxlsx)) install.packages(&quot;openxlsx&quot;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
+<pre><code>## Loading required package: openxlsx</code></pre>
+<p>Get 3 sample datasets to write into 1 excel document. 1 dataset per excel tab.</p>
+<pre class="r"><code>data(&quot;faithful&quot;)
+head(faithful)</code></pre>
+<pre><code>##   eruptions waiting
+## 1     3.600      79
+## 2     1.800      54
+## 3     3.333      74
+## 4     2.283      62
+## 5     4.533      85
+## 6     2.883      55</code></pre>
+<pre class="r"><code>data(&quot;iris&quot;)
+head(iris)</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<pre class="r"><code>data(&quot;CO2&quot;)
+head(CO2)</code></pre>
+<pre><code>##   Plant   Type  Treatment conc uptake
+## 1   Qn1 Quebec nonchilled   95   16.0
+## 2   Qn1 Quebec nonchilled  175   30.4
+## 3   Qn1 Quebec nonchilled  250   34.8
+## 4   Qn1 Quebec nonchilled  350   37.2
+## 5   Qn1 Quebec nonchilled  500   35.3
+## 6   Qn1 Quebec nonchilled  675   39.2</code></pre>
+<p>Put all 3 datasets into a list.</p>
+<pre class="r"><code>all &lt;- list(&quot;CO2&quot; = CO2, &quot;faithful&quot; = faithful, &quot;iris&quot; = iris)</code></pre>
+<p>Write each dataset to its own tab</p>
+<pre class="r"><code>write.xlsx(all, &quot;three_data.xlsx&quot;)</code></pre>
+<div class="figure">
+<img src="snip.png" alt="Excel Output" />
+<p class="caption">Excel Output</p>
+</div>
 
 </div>
+
+        <footer class="post-footer clearfix">
+    
+
+    <div class="share">
+        
+            <a class="icon-twitter" href="https://twitter.com/share?text=Export%20Multiple%20Tables%20to%20Excel&url=%2f2021%2f05%2f29%2f2021-05-29-export-multiple-tables-to-excel%2f"
+                onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fa fa-twitter"></i>
+                <span class="hidden">Twitter</span>
+            </a>
+        
+
+        
+            <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2f2021%2f05%2f29%2f2021-05-29-export-multiple-tables-to-excel%2f"
+                onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                <i class="fa fa-facebook"></i>
+                <span class="hidden">Facebook</span>
+            </a>
+        
+
+        
+            <a class="icon-google-plus" href="https://plus.google.com/share?url=%2f2021%2f05%2f29%2f2021-05-29-export-multiple-tables-to-excel%2f"
+              onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+              <i class="fa fa-google-plus"></i>
+                <span class="hidden">Google+</span>
+            </a>
+        
+        
+    </div>
+</footer>
+
+        
+    <div class="comments">
+        
+    </div>
+
     </article>
 </div>
 
