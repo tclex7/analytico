@@ -1,0 +1,42 @@
+---
+title: Convert Date to a Fiscal Year in R
+author: Alexander Cruz
+date: '2021-05-29'
+slug: convert-date-to-a-fiscal-year-in-r
+categories: []
+tags: []
+description: ''
+---
+
+You will need tidyverse package.
+```{r, message=FALSE}
+
+if(!require(tidyverse)) install.packages("tidyverse", repos = "http://cran.us.r-project.org")
+
+```
+
+Using sample dates use fiscal_state function.  It will only work for quarter, and not for year.
+```{r}
+x <- ymd(c("2009-04-01", "2011-06-03", "2007-10-02", "2012-12-25"))
+
+quarter <- quarter(x, with_year = TRUE, fiscal_start = 10)
+
+print(quarter)
+```
+
+Now you can use str_sub to pull the fiscal year only.
+```{r}
+fiscal_year <- stringr::str_sub(quarter, 1, 4)
+print(fiscal_year)
+```
+
+Putting it all together in a table
+```{r}
+data.frame(x, quarter, fiscal_year)
+```
+
+Fiscal Year with one line of code
+```{r}
+str_sub(quarter(x, with_year = TRUE, fiscal_start = 10), 1, 4)
+```
+
