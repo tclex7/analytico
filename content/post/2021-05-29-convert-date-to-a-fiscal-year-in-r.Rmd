@@ -32,11 +32,12 @@ print(fiscal_year)
 
 Putting it all together in a table
 ```{r}
-data.frame(x, quarter, fiscal_year)
+data.frame(x, fiscal_year)
 ```
 
 Fiscal Year with one line of code
 ```{r}
 str_sub(quarter(x, with_year = TRUE, fiscal_start = 10), 1, 4)
+
 ```
 
