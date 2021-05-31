@@ -3,11 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Convert Date to a Fiscal Year in R &middot; Analytico Hub</title>
-        <meta name="description" content="You will need tidyverse and lubidate package.
-if(!require(tidyverse)) install.packages(&quot;tidyverse&quot;, repos = &quot;http://cran.us.r-project.org&quot;) if(!require(lubridate)) install.packages(&quot;lubridate&quot;, repos = &quot;http://cran.us.r-project.org&quot;) Using sample dates use fiscal_state function. It will only work for quarter, and not for year.
-x &lt;- ymd(c(&quot;2009-04-01&quot;, &quot;2011-06-03&quot;, &quot;2007-10-02&quot;, &quot;2012-12-25&quot;)) quarter &lt;- quarter(x, with_year = TRUE, fiscal_start = 9) print(quarter) ## [1] 2009.3 2011.4 2008.1 2012.2 Now you can use str_sub to pull the fiscal year only.
-fiscal_year &lt;- stringr::str_sub(quarter, 1, 4) print(fiscal_year) ## [1] &quot;2009&quot; &quot;2011&quot; &quot;2008&quot; &quot;2012&quot; Putting it all together in a table">
+        <title>Analyzing a column with unique, n_distinct, and data.table &middot; Analytico Hub</title>
+        <meta name="description" content="The tutorial will show you how to analyze a column in different ways.
+Lets bring in a sample dataset.
+data(&quot;iris&quot;) head(iris) ## Sepal.Length Sepal.Width Petal.Length Petal.Width Species ## 1 5.1 3.5 1.4 0.2 setosa ## 2 4.9 3.0 1.4 0.2 setosa ## 3 4.7 3.2 1.3 0.2 setosa ## 4 4.6 3.1 1.5 0.2 setosa ## 5 5.0 3.6 1.4 0.2 setosa ## 6 5.4 3.9 1.7 0.4 setosa Lets look at the unique species names.">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
         <meta name="generator" content="Hugo 0.58.1" />
@@ -106,10 +105,10 @@ if (!doNotTrack) {
 <div class="container">
     <article class="post-container" itemscope="" itemtype="http://schema.org/BlogPosting">
         <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">Convert Date to a Fiscal Year in R</h1>
+    <h1 class="post-title" itemprop="name headline">Analyzing a column with unique, n_distinct, and data.table</h1>
     
     <p class="post-date">
-        <span>Published <time datetime="2021-05-29" itemprop="datePublished">Sat, May 29, 2021</time></span>
+        <span>Published <time datetime="2021-05-30" itemprop="datePublished">Sun, May 30, 2021</time></span>
         <span>by</span>
         <span itemscope="" itemprop="author" itemtype="https://schema.org/Person">
             <span itemprop="name">
@@ -130,30 +129,36 @@ if (!doNotTrack) {
     
 
 
-<p>You will need tidyverse and lubidate package.</p>
-<pre class="r"><code>if(!require(tidyverse)) install.packages(&quot;tidyverse&quot;, repos = &quot;http://cran.us.r-project.org&quot;)
-if(!require(lubridate)) install.packages(&quot;lubridate&quot;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
-<p>Using sample dates use fiscal_state function. It will only work for quarter, and not for year.</p>
-<pre class="r"><code>x &lt;- ymd(c(&quot;2009-04-01&quot;, &quot;2011-06-03&quot;, &quot;2007-10-02&quot;, &quot;2012-12-25&quot;))
+<p>The tutorial will show you how to analyze a column in different ways.</p>
+<p>Lets bring in a sample dataset.</p>
+<pre class="r"><code>data(&quot;iris&quot;)
+head(iris)</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Lets look at the unique species names.</p>
+<pre class="r"><code>unique(iris$Species)</code></pre>
+<pre><code>## [1] setosa     versicolor virginica 
+## Levels: setosa versicolor virginica</code></pre>
+<p>lets see how many distinct species are in iris dataset, this will be much more useful in a bigger dataset.</p>
+<pre class="r"><code>library(tidyverse)
 
-quarter &lt;- quarter(x, with_year = TRUE, fiscal_start = 9)
-
-print(quarter)</code></pre>
-<pre><code>## [1] 2009.3 2011.4 2008.1 2012.2</code></pre>
-<p>Now you can use str_sub to pull the fiscal year only.</p>
-<pre class="r"><code>fiscal_year &lt;- stringr::str_sub(quarter, 1, 4)
-print(fiscal_year)</code></pre>
-<pre><code>## [1] &quot;2009&quot; &quot;2011&quot; &quot;2008&quot; &quot;2012&quot;</code></pre>
-<p>Putting it all together in a table</p>
-<pre class="r"><code>data.frame(x, fiscal_year)</code></pre>
-<pre><code>##            x fiscal_year
-## 1 2009-04-01        2009
-## 2 2011-06-03        2011
-## 3 2007-10-02        2008
-## 4 2012-12-25        2012</code></pre>
-<p>Fiscal Year with one line of code</p>
-<pre class="r"><code>str_sub(quarter(x, with_year = TRUE, fiscal_start = 10), 1, 4)</code></pre>
-<pre><code>## [1] &quot;2009&quot; &quot;2011&quot; &quot;2008&quot; &quot;2013&quot;</code></pre>
+n_distinct(iris$Species)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<p>Let’s breakdown the species by the number of times they show up in a dataset</p>
+<pre class="r"><code>table(iris$Species)</code></pre>
+<pre><code>## 
+##     setosa versicolor  virginica 
+##         50         50         50</code></pre>
+<p>Let’s now do the breakout by percentage</p>
+<pre class="r"><code>prop.table(table(iris$Species))</code></pre>
+<pre><code>## 
+##     setosa versicolor  virginica 
+##  0.3333333  0.3333333  0.3333333</code></pre>
 
 </div>
 
@@ -162,7 +167,7 @@ print(fiscal_year)</code></pre>
 
     <div class="share">
         
-            <a class="icon-twitter" href="https://twitter.com/share?text=Convert%20Date%20to%20a%20Fiscal%20Year%20in%20R&url=%2f2021%2f05%2f29%2f2021-05-29-convert-date-to-a-fiscal-year-in-r%2f"
+            <a class="icon-twitter" href="https://twitter.com/share?text=Analyzing%20a%20column%20with%20unique%2c%20n_distinct%2c%20and%20data.table&url=%2f2021%2f05%2f30%2f2021-05-30-analyzing-a-column-with-unique-n-distinct-and-data-table%2f"
                 onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                 <i class="fa fa-twitter"></i>
                 <span class="hidden">Twitter</span>
@@ -170,7 +175,7 @@ print(fiscal_year)</code></pre>
         
 
         
-            <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2f2021%2f05%2f29%2f2021-05-29-convert-date-to-a-fiscal-year-in-r%2f"
+            <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2f2021%2f05%2f30%2f2021-05-30-analyzing-a-column-with-unique-n-distinct-and-data-table%2f"
                 onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                 <i class="fa fa-facebook"></i>
                 <span class="hidden">Facebook</span>
@@ -178,7 +183,7 @@ print(fiscal_year)</code></pre>
         
 
         
-            <a class="icon-google-plus" href="https://plus.google.com/share?url=%2f2021%2f05%2f29%2f2021-05-29-convert-date-to-a-fiscal-year-in-r%2f"
+            <a class="icon-google-plus" href="https://plus.google.com/share?url=%2f2021%2f05%2f30%2f2021-05-30-analyzing-a-column-with-unique-n-distinct-and-data-table%2f"
               onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
               <i class="fa fa-google-plus"></i>
                 <span class="hidden">Google+</span>

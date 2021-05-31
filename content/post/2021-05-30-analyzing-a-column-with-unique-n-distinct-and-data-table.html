@@ -1,0 +1,42 @@
+---
+title: Analyzing a column with unique, n_distinct, and data.table
+author: Alexander Cruz
+date: '2021-05-30'
+slug: analyzing-a-column-with-unique-n-distinct-and-data-table
+categories: []
+tags: []
+description: ''
+---
+
+
+
+<p>The tutorial will show you how to analyze a column in different ways.</p>
+<p>Lets bring in a sample dataset.</p>
+<pre class="r"><code>data(&quot;iris&quot;)
+head(iris)</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Lets look at the unique species names.</p>
+<pre class="r"><code>unique(iris$Species)</code></pre>
+<pre><code>## [1] setosa     versicolor virginica 
+## Levels: setosa versicolor virginica</code></pre>
+<p>lets see how many distinct species are in iris dataset, this will be much more useful in a bigger dataset.</p>
+<pre class="r"><code>library(tidyverse)
+
+n_distinct(iris$Species)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<p>Let’s breakdown the species by the number of times they show up in a dataset</p>
+<pre class="r"><code>table(iris$Species)</code></pre>
+<pre><code>## 
+##     setosa versicolor  virginica 
+##         50         50         50</code></pre>
+<p>Let’s now do the breakout by percentage</p>
+<pre class="r"><code>prop.table(table(iris$Species))</code></pre>
+<pre><code>## 
+##     setosa versicolor  virginica 
+##  0.3333333  0.3333333  0.3333333</code></pre>

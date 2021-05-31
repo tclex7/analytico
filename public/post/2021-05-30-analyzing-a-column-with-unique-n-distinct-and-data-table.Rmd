@@ -1,0 +1,42 @@
+---
+title: Analyzing a column with unique, n_distinct, and data.table
+author: Alexander Cruz
+date: '2021-05-30'
+slug: analyzing-a-column-with-unique-n-distinct-and-data-table
+categories: []
+tags: []
+description: ''
+---
+
+The tutorial will show you how to analyze a column in different ways. 
+
+Lets bring in a sample dataset. 
+```{r}
+data("iris")
+head(iris)
+```
+
+
+Lets look at the unique species names.
+```{r}
+unique(iris$Species)
+```
+
+
+lets see how many distinct species are in iris dataset, this will be much more useful in a bigger dataset.
+```{r, message=FALSE}
+library(tidyverse)
+
+n_distinct(iris$Species)
+```
+
+Let's breakdown the species by the number of times they show up in a dataset
+```{r}
+table(iris$Species)
+```
+
+Let's now do the breakout by percentage
+```{r}
+prop.table(table(iris$Species))
+```
+

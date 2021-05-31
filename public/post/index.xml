@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>My Name</copyright>
-    <lastBuildDate>Sat, 29 May 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 May 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Analyzing a column with unique, n_distinct, and data.table</title>
+      <link>/2021/05/30/2021-05-30-analyzing-a-column-with-unique-n-distinct-and-data-table/</link>
+      <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/05/30/2021-05-30-analyzing-a-column-with-unique-n-distinct-and-data-table/</guid>
+      <description>The tutorial will show you how to analyze a column in different ways.
+Lets bring in a sample dataset.
+data(&amp;quot;iris&amp;quot;) head(iris) ## Sepal.Length Sepal.Width Petal.Length Petal.Width Species ## 1 5.1 3.5 1.4 0.2 setosa ## 2 4.9 3.0 1.4 0.2 setosa ## 3 4.7 3.2 1.3 0.2 setosa ## 4 4.6 3.1 1.5 0.2 setosa ## 5 5.0 3.6 1.4 0.2 setosa ## 6 5.4 3.9 1.7 0.4 setosa Lets look at the unique species names.</description>
+    </item>
     
     <item>
       <title>Convert Date to a Fiscal Year in R</title>
@@ -20,8 +31,8 @@
       <guid>/2021/05/29/2021-05-29-convert-date-to-a-fiscal-year-in-r/</guid>
       <description>You will need tidyverse and lubidate package.
 if(!require(tidyverse)) install.packages(&amp;quot;tidyverse&amp;quot;, repos = &amp;quot;http://cran.us.r-project.org&amp;quot;) if(!require(lubridate)) install.packages(&amp;quot;lubridate&amp;quot;, repos = &amp;quot;http://cran.us.r-project.org&amp;quot;) Using sample dates use fiscal_state function. It will only work for quarter, and not for year.
-x &amp;lt;- ymd(c(&amp;quot;2009-04-01&amp;quot;, &amp;quot;2011-06-03&amp;quot;, &amp;quot;2007-10-02&amp;quot;, &amp;quot;2012-12-25&amp;quot;)) quarter &amp;lt;- quarter(x, with_year = TRUE, fiscal_start = 10) print(quarter) ## [1] 2009.3 2011.3 2008.1 2013.1 Now you can use str_sub to pull the fiscal year only.
-fiscal_year &amp;lt;- stringr::str_sub(quarter, 1, 4) print(fiscal_year) ## [1] &amp;quot;2009&amp;quot; &amp;quot;2011&amp;quot; &amp;quot;2008&amp;quot; &amp;quot;2013&amp;quot; Putting it all together in a table</description>
+x &amp;lt;- ymd(c(&amp;quot;2009-04-01&amp;quot;, &amp;quot;2011-06-03&amp;quot;, &amp;quot;2007-10-02&amp;quot;, &amp;quot;2012-12-25&amp;quot;)) quarter &amp;lt;- quarter(x, with_year = TRUE, fiscal_start = 9) print(quarter) ## [1] 2009.3 2011.4 2008.1 2012.2 Now you can use str_sub to pull the fiscal year only.
+fiscal_year &amp;lt;- stringr::str_sub(quarter, 1, 4) print(fiscal_year) ## [1] &amp;quot;2009&amp;quot; &amp;quot;2011&amp;quot; &amp;quot;2008&amp;quot; &amp;quot;2012&amp;quot; Putting it all together in a table</description>
     </item>
     
     <item>

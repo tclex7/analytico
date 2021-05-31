@@ -16,21 +16,21 @@ if(!require(lubridate)) install.packages(&quot;lubridate&quot;, repos = &quot;ht
 <p>Using sample dates use fiscal_state function. It will only work for quarter, and not for year.</p>
 <pre class="r"><code>x &lt;- ymd(c(&quot;2009-04-01&quot;, &quot;2011-06-03&quot;, &quot;2007-10-02&quot;, &quot;2012-12-25&quot;))
 
-quarter &lt;- quarter(x, with_year = TRUE, fiscal_start = 10)
+quarter &lt;- quarter(x, with_year = TRUE, fiscal_start = 9)
 
 print(quarter)</code></pre>
-<pre><code>## [1] 2009.3 2011.3 2008.1 2013.1</code></pre>
+<pre><code>## [1] 2009.3 2011.4 2008.1 2012.2</code></pre>
 <p>Now you can use str_sub to pull the fiscal year only.</p>
 <pre class="r"><code>fiscal_year &lt;- stringr::str_sub(quarter, 1, 4)
 print(fiscal_year)</code></pre>
-<pre><code>## [1] &quot;2009&quot; &quot;2011&quot; &quot;2008&quot; &quot;2013&quot;</code></pre>
+<pre><code>## [1] &quot;2009&quot; &quot;2011&quot; &quot;2008&quot; &quot;2012&quot;</code></pre>
 <p>Putting it all together in a table</p>
 <pre class="r"><code>data.frame(x, fiscal_year)</code></pre>
 <pre><code>##            x fiscal_year
 ## 1 2009-04-01        2009
 ## 2 2011-06-03        2011
 ## 3 2007-10-02        2008
-## 4 2012-12-25        2013</code></pre>
+## 4 2012-12-25        2012</code></pre>
 <p>Fiscal Year with one line of code</p>
 <pre class="r"><code>str_sub(quarter(x, with_year = TRUE, fiscal_start = 10), 1, 4)</code></pre>
 <pre><code>## [1] &quot;2009&quot; &quot;2011&quot; &quot;2008&quot; &quot;2013&quot;</code></pre>
