@@ -24,6 +24,48 @@ data(&amp;quot;iris&amp;quot;) head(iris) ## Sepal.Length Sepal.Width Petal.Leng
     </item>
     
     <item>
+      <title>Formatting Numbers</title>
+      <link>/2021/05/30/2021-05-30-formatting-numbers/</link>
+      <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/05/30/2021-05-30-formatting-numbers/</guid>
+      <description>Create a simple number vector
+df = c(123454, 39384894, 123) Use Pretty number to have the output breakout with commas
+prettyNum(df,big.mark=&amp;quot;,&amp;quot;,scientific=FALSE) ## [1] &amp;quot;123,454&amp;quot; &amp;quot;39,384,894&amp;quot; &amp;quot;123&amp;quot; Same output using format
+format(df,big.mark=&amp;quot;,&amp;quot;,scientific=FALSE, trim = TRUE) ## [1] &amp;quot;123,454&amp;quot; &amp;quot;39,384,894&amp;quot; &amp;quot;123&amp;quot; Same output using scales package
+library(scales) comma(df) ## [1] &amp;quot;123,454&amp;quot; &amp;quot;39,384,894&amp;quot; &amp;quot;123&amp;quot; add usd sign to output
+sprintf(&amp;quot;$ %3.2f&amp;quot;, df) ## [1] &amp;quot;$ 123454.00&amp;quot; &amp;quot;$ 39384894.00&amp;quot; &amp;quot;$ 123.00&amp;quot; Change number to a percentage</description>
+    </item>
+    
+    <item>
+      <title>Formatting Numbers</title>
+      <link>/2021/05/30/2021-05-30-formatting-numbers.knit/</link>
+      <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/05/30/2021-05-30-formatting-numbers.knit/</guid>
+      <description>Create a simple number vector
+df = c(123454, 39384894, 123)  Use Pretty number to have the output breakout with commas
+prettyNum(df,big.mark=&amp;quot;,&amp;quot;,scientific=FALSE)  ## [1] &amp;quot;123,454&amp;quot; &amp;quot;39,384,894&amp;quot; &amp;quot;123&amp;quot;  Same output using format
+format(df,big.mark=&amp;quot;,&amp;quot;,scientific=FALSE, trim = TRUE)  ## [1] &amp;quot;123,454&amp;quot; &amp;quot;39,384,894&amp;quot; &amp;quot;123&amp;quot;  Same output using scales package
+library(scales) comma(df)  ## [1] &amp;quot;123,454&amp;quot; &amp;quot;39,384,894&amp;quot; &amp;quot;123&amp;quot;  add usd sign to output
+sprintf(&amp;quot;$ %3.2f&amp;quot;, df)  ## [1] &amp;quot;$ 123454.</description>
+    </item>
+    
+    <item>
+      <title>Formatting Numbers</title>
+      <link>/2021/05/30/2021-05-30-formatting-numbers.utf8/</link>
+      <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/05/30/2021-05-30-formatting-numbers.utf8/</guid>
+      <description>Create a simple number vector
+df = c(123454, 39384894, 123)  Use Pretty number to have the output breakout with commas
+prettyNum(df,big.mark=&amp;quot;,&amp;quot;,scientific=FALSE)  ## [1] &amp;quot;123,454&amp;quot; &amp;quot;39,384,894&amp;quot; &amp;quot;123&amp;quot;  Same output using format
+format(df,big.mark=&amp;quot;,&amp;quot;,scientific=FALSE, trim = TRUE)  ## [1] &amp;quot;123,454&amp;quot; &amp;quot;39,384,894&amp;quot; &amp;quot;123&amp;quot;  Same output using scales package
+library(scales) comma(df)  ## [1] &amp;quot;123,454&amp;quot; &amp;quot;39,384,894&amp;quot; &amp;quot;123&amp;quot;  add usd sign to output
+sprintf(&amp;quot;$ %3.2f&amp;quot;, df)  ## [1] &amp;quot;$ 123454.</description>
+    </item>
+    
+    <item>
       <title>Convert Date to a Fiscal Year in R</title>
       <link>/2021/05/29/2021-05-29-convert-date-to-a-fiscal-year-in-r/</link>
       <pubDate>Sat, 29 May 2021 00:00:00 +0000</pubDate>
