@@ -1,0 +1,43 @@
+---
+title: "Adding Comma and Dollar Sign to Numbers in R"
+author: "Alexander Cruz"
+date: '2021-12-08'
+description: ''
+slug: adding-comma-and-dollar-sign-to-numbers-in-r
+tags: []
+categories: []
+---
+
+How to add a comma to a set of numbers
+```{r}
+
+x <- c(1011, 10121, 100000)
+prettyNum(x, big.mark = ',')
+```
+
+Removing scientific notation
+```{r}
+prettyNum(x, big.mark = ',',scientific=FALSE)
+```
+
+Adding comma to a dataframe
+```{r, message=FALSE, warning=FALSE}
+df <- data.frame(a = c('a', 'b', 'c'), current_number = x)
+
+library(dplyr)
+
+df %>% mutate(new_number = prettyNum(x, big.mark = ',',scientific=FALSE))
+```
+
+Add a dollar sign to the number, with comma, and round the cents
+```{r}
+library(scales)
+y <- c(1211.122, 1234.1212313212)
+dollar(y)
+```
+
+Add dollar sign to a data frame column
+```{r}
+df %>%  mutate(current_number = scales::dollar(current_number)) 
+```
+
