@@ -7,10 +7,33 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>My Name</copyright>
-    <lastBuildDate>Sun, 30 May 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jun 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Distinct Values per Column in Data Frame</title>
+      <link>/2022/06/20/2022-06-20-distinct-values-per-column-in-data-frame/</link>
+      <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/2022/06/20/2022-06-20-distinct-values-per-column-in-data-frame/</guid>
+      <description>This tutorial will show you how to pull the number of distinct values per column in a data frame.
+We will use iris data set as an example. We will need the dplyr package.
+library(dplyr) data(&amp;quot;iris&amp;quot;) head(iris) ## Sepal.Length Sepal.Width Petal.Length Petal.Width Species ## 1 5.1 3.5 1.4 0.2 setosa ## 2 4.9 3.0 1.4 0.2 setosa ## 3 4.7 3.2 1.3 0.2 setosa ## 4 4.6 3.1 1.5 0.</description>
+    </item>
+    
+    <item>
+      <title>Adding Comma and Dollar Sign to Numbers in R</title>
+      <link>/2021/12/08/2021-12-08-adding-comma-and-dollar-sign-to-numbers-in-r/</link>
+      <pubDate>Wed, 08 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/12/08/2021-12-08-adding-comma-and-dollar-sign-to-numbers-in-r/</guid>
+      <description>How to add a comma to a set of numbers
+x &amp;lt;- c(1011, 10121, 100000) prettyNum(x, big.mark = &amp;#39;,&amp;#39;) ## [1] &amp;quot;1,011&amp;quot; &amp;quot;10,121&amp;quot; &amp;quot;1e+05&amp;quot; Removing scientific notation
+prettyNum(x, big.mark = &amp;#39;,&amp;#39;,scientific=FALSE) ## [1] &amp;quot;1,011&amp;quot; &amp;quot;10,121&amp;quot; &amp;quot;100,000&amp;quot; Adding comma to a dataframe
+df &amp;lt;- data.frame(a = c(&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;), current_number = x) library(dplyr) df %&amp;gt;% mutate(new_number = prettyNum(x, big.mark = &amp;#39;,&amp;#39;,scientific=FALSE)) ## a current_number new_number ## 1 a 1011 1,011 ## 2 b 10121 10,121 ## 3 c 100000 100,000 Add a dollar sign to the number, with comma, and round the cents</description>
+    </item>
     
     <item>
       <title>Analyzing a column with unique, n_distinct, and data.table</title>
@@ -35,34 +58,6 @@ prettyNum(df,big.mark=&amp;quot;,&amp;quot;,scientific=FALSE) ## [1] &amp;quot;1
 format(df,big.mark=&amp;quot;,&amp;quot;,scientific=FALSE, trim = TRUE) ## [1] &amp;quot;123,454&amp;quot; &amp;quot;39,384,894&amp;quot; &amp;quot;123&amp;quot; Same output using scales package
 library(scales) comma(df) ## [1] &amp;quot;123,454&amp;quot; &amp;quot;39,384,894&amp;quot; &amp;quot;123&amp;quot; add usd sign to output
 sprintf(&amp;quot;$ %3.2f&amp;quot;, df) ## [1] &amp;quot;$ 123454.00&amp;quot; &amp;quot;$ 39384894.00&amp;quot; &amp;quot;$ 123.00&amp;quot; Change number to a percentage</description>
-    </item>
-    
-    <item>
-      <title>Formatting Numbers</title>
-      <link>/2021/05/30/2021-05-30-formatting-numbers.knit/</link>
-      <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/2021/05/30/2021-05-30-formatting-numbers.knit/</guid>
-      <description>Create a simple number vector
-df = c(123454, 39384894, 123)  Use Pretty number to have the output breakout with commas
-prettyNum(df,big.mark=&amp;quot;,&amp;quot;,scientific=FALSE)  ## [1] &amp;quot;123,454&amp;quot; &amp;quot;39,384,894&amp;quot; &amp;quot;123&amp;quot;  Same output using format
-format(df,big.mark=&amp;quot;,&amp;quot;,scientific=FALSE, trim = TRUE)  ## [1] &amp;quot;123,454&amp;quot; &amp;quot;39,384,894&amp;quot; &amp;quot;123&amp;quot;  Same output using scales package
-library(scales) comma(df)  ## [1] &amp;quot;123,454&amp;quot; &amp;quot;39,384,894&amp;quot; &amp;quot;123&amp;quot;  add usd sign to output
-sprintf(&amp;quot;$ %3.2f&amp;quot;, df)  ## [1] &amp;quot;$ 123454.</description>
-    </item>
-    
-    <item>
-      <title>Formatting Numbers</title>
-      <link>/2021/05/30/2021-05-30-formatting-numbers.utf8/</link>
-      <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/2021/05/30/2021-05-30-formatting-numbers.utf8/</guid>
-      <description>Create a simple number vector
-df = c(123454, 39384894, 123)  Use Pretty number to have the output breakout with commas
-prettyNum(df,big.mark=&amp;quot;,&amp;quot;,scientific=FALSE)  ## [1] &amp;quot;123,454&amp;quot; &amp;quot;39,384,894&amp;quot; &amp;quot;123&amp;quot;  Same output using format
-format(df,big.mark=&amp;quot;,&amp;quot;,scientific=FALSE, trim = TRUE)  ## [1] &amp;quot;123,454&amp;quot; &amp;quot;39,384,894&amp;quot; &amp;quot;123&amp;quot;  Same output using scales package
-library(scales) comma(df)  ## [1] &amp;quot;123,454&amp;quot; &amp;quot;39,384,894&amp;quot; &amp;quot;123&amp;quot;  add usd sign to output
-sprintf(&amp;quot;$ %3.2f&amp;quot;, df)  ## [1] &amp;quot;$ 123454.</description>
     </item>
     
     <item>

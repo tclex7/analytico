@@ -1,0 +1,37 @@
+---
+title: Distinct Values per Column in Data Frame
+author: Analytico Hub
+date: '2022-06-20'
+slug: distinct-values-per-column-in-data-frame
+categories: []
+tags: []
+description: ''
+---
+
+This tutorial will show you how to pull the number of distinct values per column in a data frame.  
+
+We will use iris data set as an example.  We will need the dplyr package.
+```{r, message=FALSE}
+library(dplyr)
+data("iris")
+head(iris)
+```
+
+As you can see the summary or STR function will not easily give you this information.
+```{r}
+summary(iris)
+str(iris)
+glimpse(iris)
+```
+
+You can pull a count of distincts values per column using the lapply and n_distinct funtions.
+```{r}
+dlist <- lapply(iris, n_distinct)
+print(dlist)
+```
+
+If you would like to view the output as a dataframe.
+```{r}
+data.frame(dlist)
+```
+
