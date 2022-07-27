@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>My Name</copyright>
-    <lastBuildDate>Mon, 20 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 26 Jul 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Calculate Moving Averages in R</title>
+      <link>/2022/07/26/2022-07-26-calculate-moving-averages-in-r/</link>
+      <pubDate>Tue, 26 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/2022/07/26/2022-07-26-calculate-moving-averages-in-r/</guid>
+      <description>This tutorial will show you how to calculate moving averages in R. You will need the zoo and dplyr package to run this script.
+if(!require(zoo)) install.packages(&amp;quot;zoo&amp;quot;) if(!require(dplyr)) install.packages(&amp;quot;dplyr&amp;quot;) We will create a dataset to use as an example. The dataset will have date column and a numeric column that we will generate randomly. We will set a seed so we can recreate the exact numbers later.
+set.seed(7) start.Date &amp;lt;- as.</description>
+    </item>
     
     <item>
       <title>Distinct Values per Column in Data Frame</title>

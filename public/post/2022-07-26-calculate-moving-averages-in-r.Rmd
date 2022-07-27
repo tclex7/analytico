@@ -1,0 +1,35 @@
+---
+title: Calculate Moving Averages in R
+author: Alex Cruz
+date: '2022-07-26'
+slug: calculate-moving-averages-in-r
+categories: []
+tags: []
+description: ''
+---
+
+This tutorial will show you how to calculate moving averages in R.  You will need the zoo and dplyr package to run this script.  
+```{r warning= FALSE, message=FALSE}
+
+if(!require(zoo)) install.packages("zoo")
+if(!require(dplyr)) install.packages("dplyr")
+```
+
+We will create a dataset to use as an example.  The dataset will have date column and a numeric column that we will generate randomly.  We will set a seed so we can recreate the exact numbers later.
+```{r warning= FALSE, message=FALSE}
+set.seed(7)
+start.Date <- as.Date("2022/1/1")
+end.Date <- as.Date("2022/4/1")
+date.range <- seq.Date(start.Date, end.Date, by = "day")
+df <- data.frame("Date" = date.range,
+                 "Score" =  runif(length(date.range), 1, 99) )
+#show first 10 rows
+head(df, n = 10)
+```
+
+Now use the rollmean function to calculate your moving average (you can change the range of the moving average by changing the K arugment).  Use the mutate function in order to add rolling average as a new column.
+```{r warning= FALSE, message=FALSE}
+moving_average <- df %>% mutate(moving_average = rollmean(x = Score, k = 7, fill = NA))
+head(moving_average, n = 15)
+```
+

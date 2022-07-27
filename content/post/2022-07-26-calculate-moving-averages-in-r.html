@@ -1,0 +1,54 @@
+---
+title: Calculate Moving Averages in R
+author: Alex Cruz
+date: '2022-07-26'
+slug: calculate-moving-averages-in-r
+categories: []
+tags: []
+description: ''
+---
+
+
+
+<p>This tutorial will show you how to calculate moving averages in R. You will need the zoo and dplyr package to run this script.</p>
+<pre class="r"><code>if(!require(zoo)) install.packages(&quot;zoo&quot;)
+if(!require(dplyr)) install.packages(&quot;dplyr&quot;)</code></pre>
+<p>We will create a dataset to use as an example. The dataset will have date column and a numeric column that we will generate randomly. We will set a seed so we can recreate the exact numbers later.</p>
+<pre class="r"><code>set.seed(7)
+start.Date &lt;- as.Date(&quot;2022/1/1&quot;)
+end.Date &lt;- as.Date(&quot;2022/4/1&quot;)
+date.range &lt;- seq.Date(start.Date, end.Date, by = &quot;day&quot;)
+df &lt;- data.frame(&quot;Date&quot; = date.range,
+                 &quot;Score&quot; =  runif(length(date.range), 1, 99) )
+#show first 10 rows
+head(df, n = 10)</code></pre>
+<pre><code>##          Date     Score
+## 1  2022-01-01 97.913111
+## 2  2022-01-02 39.979054
+## 3  2022-01-03 12.338382
+## 4  2022-01-04  7.835371
+## 5  2022-01-05 24.887440
+## 6  2022-01-06 78.617022
+## 7  2022-01-07 34.326111
+## 8  2022-01-08 96.262125
+## 9  2022-01-09 17.253837
+## 10 2022-01-10 45.992159</code></pre>
+<p>Now use the rollmean function to calculate your moving average (you can change the range of the moving average by changing the K arugment). Use the mutate function in order to add rolling average as a new column.</p>
+<pre class="r"><code>moving_average &lt;- df %&gt;% mutate(moving_average = rollmean(x = Score, k = 7, fill = NA))
+head(moving_average, n = 15)</code></pre>
+<pre><code>##          Date     Score moving_average
+## 1  2022-01-01 97.913111             NA
+## 2  2022-01-02 39.979054             NA
+## 3  2022-01-03 12.338382             NA
+## 4  2022-01-04  7.835371       42.27093
+## 5  2022-01-05 24.887440       42.03507
+## 6  2022-01-06 78.617022       38.78861
+## 7  2022-01-07 34.326111       43.59629
+## 8  2022-01-08 96.262125       45.02429
+## 9  2022-01-09 17.253837       44.85247
+## 10 2022-01-10 45.992159       44.58370
+## 11 2022-01-11 17.831312       41.17104
+## 12 2022-01-12 23.684756       33.91044
+## 13 2022-01-13 76.735571       32.77427
+## 14 2022-01-14 10.437551       34.19614
+## 15 2022-01-15 45.437881       31.91353</code></pre>
