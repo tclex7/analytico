@@ -24,6 +24,17 @@ set.seed(7) start.Date &amp;lt;- as.</description>
     </item>
     
     <item>
+      <title>Calculating Percent Of Total in R</title>
+      <link>/2022/07/26/2022-07-26-calculating-percent-of-total-in-r/</link>
+      <pubDate>Tue, 26 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/2022/07/26/2022-07-26-calculating-percent-of-total-in-r/</guid>
+      <description>This tutorial will show you for to calculate percent of total in R. You will need the tidyverse package to run this script.
+if(!require(tidyverse)) install.packages(&amp;quot;tidyverse&amp;quot;) Set your seed, so you can re-create the exact output. We will create an example dataset with two columns: Color and Score. We will include 100 rows in our sample set.
+set.seed(7) df &amp;lt;- data.frame(&amp;quot;Color&amp;quot;=c(&amp;#39;red&amp;#39;, &amp;#39;blue&amp;#39;, &amp;#39;yellow&amp;#39;, &amp;#39;green&amp;#39;, &amp;#39;orange&amp;#39;), &amp;quot;Score&amp;quot; = runif(100, 1, 99) ) head(df) ## Color Score ## 1 red 97.</description>
+    </item>
+    
+    <item>
       <title>Distinct Values per Column in Data Frame</title>
       <link>/2022/06/20/2022-06-20-distinct-values-per-column-in-data-frame/</link>
       <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>

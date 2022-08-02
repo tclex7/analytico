@@ -1,0 +1,36 @@
+---
+title: Calculating Percent Of Total in R
+author: Alex Cruz
+date: '2022-07-26'
+slug: calculating-percent-of-total-in-r
+categories: []
+tags: []
+description: ''
+---
+
+This tutorial will show you for to calculate percent of total in R.  You will need the tidyverse package to run this script.
+```{r warning= FALSE, message=FALSE}
+if(!require(tidyverse)) install.packages("tidyverse")
+```
+
+Set your seed, so you can re-create the exact output.  We will create an example dataset with two columns: Color and Score.  We will include 100 rows in our sample set.
+```{r warning= FALSE, message=FALSE}
+set.seed(7)
+
+
+df <- data.frame("Color"=c('red', 'blue', 'yellow', 'green', 'orange'),
+                "Score" =  runif(100, 1, 99) )
+
+head(df)
+```
+
+Now we will calculate the percent of total. You will see details to the right of code. 
+```{r warning= FALSE, message=FALSE}
+
+percent_of_total <- df %>% #calling the sample dataset
+  group_by(Color) %>% #group the column that we want to summarise 
+  summarise(Count = length(Score), #total rows of each color
+            total_score = sum(Score, na.rm = TRUE),  #total score per color
+            Percent_score = paste0(round(sum(Score * 100) /  
+                            sum(df$Score, na.rm = TRUE),1),"%"))#total score per color divided by total score color of dataset
+```

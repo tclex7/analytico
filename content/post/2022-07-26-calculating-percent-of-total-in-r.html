@@ -1,0 +1,36 @@
+---
+title: Calculating Percent Of Total in R
+author: Alex Cruz
+date: '2022-07-26'
+slug: calculating-percent-of-total-in-r
+categories: []
+tags: []
+description: ''
+---
+
+
+
+<p>This tutorial will show you for to calculate percent of total in R. You will need the tidyverse package to run this script.</p>
+<pre class="r"><code>if(!require(tidyverse)) install.packages(&quot;tidyverse&quot;)</code></pre>
+<p>Set your seed, so you can re-create the exact output. We will create an example dataset with two columns: Color and Score. We will include 100 rows in our sample set.</p>
+<pre class="r"><code>set.seed(7)
+
+
+df &lt;- data.frame(&quot;Color&quot;=c(&#39;red&#39;, &#39;blue&#39;, &#39;yellow&#39;, &#39;green&#39;, &#39;orange&#39;),
+                &quot;Score&quot; =  runif(100, 1, 99) )
+
+head(df)</code></pre>
+<pre><code>##    Color     Score
+## 1    red 97.913111
+## 2   blue 39.979054
+## 3 yellow 12.338382
+## 4  green  7.835371
+## 5 orange 24.887440
+## 6    red 78.617022</code></pre>
+<p>Now we will calculate the percent of total. You will see details to the right of code.</p>
+<pre class="r"><code>percent_of_total &lt;- df %&gt;% #calling the sample dataset
+  group_by(Color) %&gt;% #group the column that we want to summarise 
+  summarise(Count = length(Score), #total rows of each color
+            total_score = sum(Score, na.rm = TRUE),  #total score per color
+            Percent_score = paste0(round(sum(Score * 100) /  
+                            sum(df$Score, na.rm = TRUE),1),&quot;%&quot;))#total score per color divided by total score color of dataset</code></pre>
