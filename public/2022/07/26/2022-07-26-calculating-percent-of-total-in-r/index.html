@@ -118,7 +118,7 @@ if (!doNotTrack) {
     </p>
     
         <p class="post-reading post-line">
-            <span>Estimated reading time: 1 min</span>
+            <span>Estimated reading time: 2 min</span>
         </p>
     
 </header>
@@ -152,7 +152,17 @@ head(df)</code></pre>
   summarise(Count = length(Score), #total rows of each color
             total_score = sum(Score, na.rm = TRUE),  #total score per color
             Percent_score = paste0(round(sum(Score * 100) /  
-                            sum(df$Score, na.rm = TRUE),1),&quot;%&quot;))#total score per color divided by total score color of dataset</code></pre>
+                            sum(df$Score, na.rm = TRUE),1),&quot;%&quot;))#total score per color divided by total score color of dataset
+
+print(percent_of_total)</code></pre>
+<pre><code>## # A tibble: 5 x 4
+##   Color  Count total_score Percent_score
+##   &lt;fct&gt;  &lt;int&gt;       &lt;dbl&gt; &lt;chr&gt;        
+## 1 blue      20        814. 16%          
+## 2 green     20       1092. 21.5%        
+## 3 orange    20       1027. 20.2%        
+## 4 red       20        994. 19.5%        
+## 5 yellow    20       1163. 22.9%</code></pre>
 
 </div>
 
