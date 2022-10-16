@@ -1,0 +1,83 @@
+---
+title: Using Match Unique and N_Distinct functions in R
+author: Alexander Cruz
+date: '2022-09-08'
+slug: using-match-unique-and-n-distinct-functions-in-r
+categories: []
+tags: []
+description: ''
+---
+
+In this tutorial we will go over using the match, unique, and n_distinct function.  Let's create 3 vectors to use as an example.
+```{r}
+#Unique, Match, Identical, n_distinct 
+
+setA <- c(5:10)
+
+setB <- c(5,4,7,8,9,11)
+
+setC <- c(5:10)
+
+print(setA)
+
+print(setB)
+```
+
+We will use the match function to compare SetA to SetB
+```{r}
+#using match function
+match(setA,setB)
+```
+
+how many don't match
+```{r}
+sum(is.na(match(setA,setB)))
+```
+
+Identical will give you a true or false when comparing if both vectors match
+```{r}
+#using identical 
+identical(setA,setB)
+
+identical(setA,setC)
+```
+
+n_distinct will count the unqiue values.
+```{r}
+setD <- c(5,5,6,6,7)
+print(setD)
+
+dplyr::n_distinct(setD)
+
+```
+
+Use unique to remove duplicates
+```{r}
+SetD1 <- unique(setD)
+print(SetD1)
+```
+
+you can use the names function in combination with identical or match function to check if column names are similar.
+```{r}
+data("iris")
+head(iris)
+
+iris_1 <- iris
+iris_2 <- iris
+
+identical(names(iris_1), names(iris_2))
+match(names(iris_1), names(iris_2))
+```
+
+Now we will change the first column name to the second dataset and run the same lines of code as above
+```{r}
+names(iris_2)[1] <- "wrong"
+names(iris_2)
+
+identical(names(iris_1), names(iris_2))
+match(names(iris_1), names(iris_2))
+```
+
+
+
+

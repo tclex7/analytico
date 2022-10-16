@@ -1,0 +1,73 @@
+---
+title: Using Match Unique and N_Distinct functions in R
+author: Alexander Cruz
+date: '2022-09-08'
+slug: using-match-unique-and-n-distinct-functions-in-r
+categories: []
+tags: []
+description: ''
+---
+
+
+
+<p>In this tutorial we will go over using the match, unique, and n_distinct function. Let’s create 3 vectors to use as an example.</p>
+<pre class="r"><code>#Unique, Match, Identical, n_distinct 
+
+setA &lt;- c(5:10)
+
+setB &lt;- c(5,4,7,8,9,11)
+
+setC &lt;- c(5:10)
+
+print(setA)</code></pre>
+<pre><code>## [1]  5  6  7  8  9 10</code></pre>
+<pre class="r"><code>print(setB)</code></pre>
+<pre><code>## [1]  5  4  7  8  9 11</code></pre>
+<p>We will use the match function to compare SetA to SetB</p>
+<pre class="r"><code>#using match function
+match(setA,setB)</code></pre>
+<pre><code>## [1]  1 NA  3  4  5 NA</code></pre>
+<p>how many don’t match</p>
+<pre class="r"><code>sum(is.na(match(setA,setB)))</code></pre>
+<pre><code>## [1] 2</code></pre>
+<p>Identical will give you a true or false when comparing if both vectors match</p>
+<pre class="r"><code>#using identical 
+identical(setA,setB)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code>identical(setA,setC)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<p>n_distinct will count the unqiue values.</p>
+<pre class="r"><code>setD &lt;- c(5,5,6,6,7)
+print(setD)</code></pre>
+<pre><code>## [1] 5 5 6 6 7</code></pre>
+<pre class="r"><code>dplyr::n_distinct(setD)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<p>Use unique to remove duplicates</p>
+<pre class="r"><code>SetD1 &lt;- unique(setD)
+print(SetD1)</code></pre>
+<pre><code>## [1] 5 6 7</code></pre>
+<p>you can use the names function in combination with identical or match function to check if column names are similar.</p>
+<pre class="r"><code>data(&quot;iris&quot;)
+head(iris)</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<pre class="r"><code>iris_1 &lt;- iris
+iris_2 &lt;- iris
+
+identical(names(iris_1), names(iris_2))</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>match(names(iris_1), names(iris_2))</code></pre>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<p>Now we will change the first column name to the second dataset and run the same lines of code as above</p>
+<pre class="r"><code>names(iris_2)[1] &lt;- &quot;wrong&quot;
+names(iris_2)</code></pre>
+<pre><code>## [1] &quot;wrong&quot;        &quot;Sepal.Width&quot;  &quot;Petal.Length&quot; &quot;Petal.Width&quot;  &quot;Species&quot;</code></pre>
+<pre class="r"><code>identical(names(iris_1), names(iris_2))</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code>match(names(iris_1), names(iris_2))</code></pre>
+<pre><code>## [1] NA  2  3  4  5</code></pre>

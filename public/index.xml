@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>My Name</copyright>
-    <lastBuildDate>Tue, 26 Jul 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 08 Sep 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Using Match Unique and N_Distinct functions in R</title>
+      <link>/2022/09/08/2022-09-08-using-match-unique-and-n-distinct-functions-in-r/</link>
+      <pubDate>Thu, 08 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/2022/09/08/2022-09-08-using-match-unique-and-n-distinct-functions-in-r/</guid>
+      <description>In this tutorial we will go over using the match, unique, and n_distinct function. Let’s create 3 vectors to use as an example.
+#Unique, Match, Identical, n_distinct setA &amp;lt;- c(5:10) setB &amp;lt;- c(5,4,7,8,9,11) setC &amp;lt;- c(5:10) print(setA) ## [1] 5 6 7 8 9 10 print(setB) ## [1] 5 4 7 8 9 11 We will use the match function to compare SetA to SetB
+#using match function match(setA,setB) ## [1] 1 NA 3 4 5 NA how many don’t match</description>
+    </item>
     
     <item>
       <title>Calculate Moving Averages in R</title>
