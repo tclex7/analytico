@@ -60,7 +60,7 @@ print(SetD1)
 you can use the names function in combination with identical or match function to check if column names are similar.
 ```{r}
 data("iris")
-head(iris)
+# head(iris)
 
 iris_1 <- iris
 iris_2 <- iris
@@ -78,6 +78,14 @@ identical(names(iris_1), names(iris_2))
 match(names(iris_1), names(iris_2))
 ```
 
+We can remove duplicate rows in a dataframe with the unique function
+```{r}
+iris4 <- rbind(iris, iris_1)
+paste0('numbers of rows: ',nrow(iris4))
+
+iris4 <- unique(iris4)
+paste0('numbers of rows after using unique function: ',nrow(iris4))
+```
 
 
 

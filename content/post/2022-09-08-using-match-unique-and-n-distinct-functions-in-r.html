@@ -48,15 +48,9 @@ print(SetD1)</code></pre>
 <pre><code>## [1] 5 6 7</code></pre>
 <p>you can use the names function in combination with identical or match function to check if column names are similar.</p>
 <pre class="r"><code>data(&quot;iris&quot;)
-head(iris)</code></pre>
-<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
-<pre class="r"><code>iris_1 &lt;- iris
+# head(iris)
+
+iris_1 &lt;- iris
 iris_2 &lt;- iris
 
 identical(names(iris_1), names(iris_2))</code></pre>
@@ -71,3 +65,10 @@ names(iris_2)</code></pre>
 <pre><code>## [1] FALSE</code></pre>
 <pre class="r"><code>match(names(iris_1), names(iris_2))</code></pre>
 <pre><code>## [1] NA  2  3  4  5</code></pre>
+<p>We can remove duplicate rows in a dataframe with the unique function</p>
+<pre class="r"><code>iris4 &lt;- rbind(iris, iris_1)
+paste0(&#39;numbers of rows: &#39;,nrow(iris4))</code></pre>
+<pre><code>## [1] &quot;numbers of rows: 300&quot;</code></pre>
+<pre class="r"><code>iris4 &lt;- unique(iris4)
+paste0(&#39;numbers of rows after using unique function: &#39;,nrow(iris4))</code></pre>
+<pre><code>## [1] &quot;numbers of rows after using unique function: 149&quot;</code></pre>
