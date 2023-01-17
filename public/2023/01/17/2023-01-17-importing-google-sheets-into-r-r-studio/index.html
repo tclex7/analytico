@@ -6,8 +6,8 @@
         <title>Importing Google Sheets into R (R Studio) &middot; Analytico Hub</title>
         <meta name="description" content="This Tutorial will show you how to import a google sheet directly to R. If the file is set to private, then you will need to link your google drive to R before importing, or you will get an error.
 First you will have to install googlesheets4 package
-if(!require(googlesheets4)) install.packages(&quot;googlesheets4&quot;) ## Loading required package: googlesheets4 locate the url for the google sheets file you wish to import
-url &lt;- &#39;https://docs.">
+if(!require(googlesheets4)) install.packages(&quot;googlesheets4&quot;) locate the url for the google sheets file you wish to import
+url &lt;- &#39;https://docs.google.com/spreadsheets/d/1rnwe7QNMkH3WzJfFnWXZ-uvgWxTm1X4yajAEyQKEbGY/edit#gid=0&#39; Read file into R. Notice that the default sheet that will be imported is sheet 1.">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
         <meta name="generator" content="Hugo 0.58.1" />
@@ -133,24 +133,12 @@ if (!doNotTrack) {
 <p>This Tutorial will show you how to import a google sheet directly to R. If the file is set to private, then you will need to link your google drive to R before importing, or you will get an error.</p>
 <p>First you will have to install googlesheets4 package</p>
 <pre class="r"><code>if(!require(googlesheets4)) install.packages(&quot;googlesheets4&quot;)</code></pre>
-<pre><code>## Loading required package: googlesheets4</code></pre>
 <p>locate the url for the google sheets file you wish to import</p>
 <pre class="r"><code>url &lt;- &#39;https://docs.google.com/spreadsheets/d/1rnwe7QNMkH3WzJfFnWXZ-uvgWxTm1X4yajAEyQKEbGY/edit#gid=0&#39;</code></pre>
 <p>Read file into R. Notice that the default sheet that will be imported is sheet 1.</p>
 <pre class="r"><code>df1 &lt;- read_sheet(url)</code></pre>
-<pre><code>## ! Using an auto-discovered, cached token.</code></pre>
-<pre><code>##   To suppress this message, modify your code or options to clearly consent to
-##   the use of a cached token.</code></pre>
-<pre><code>##   See gargle&#39;s &quot;Non-interactive auth&quot; vignette for more details:</code></pre>
-<pre><code>##   &lt;https://gargle.r-lib.org/articles/non-interactive-auth.html&gt;</code></pre>
-<pre><code>## ℹ The googlesheets4 package is using a cached token for
-##   &#39;cruz.alexander7@gmail.com&#39;.</code></pre>
-<pre><code>## ✔ Reading from &quot;Test for Youtube&quot;.</code></pre>
-<pre><code>## ✔ Range &#39;Sheet1&#39;.</code></pre>
 <p>Read in second sheet in the file and remove white space</p>
 <pre class="r"><code>df2 &lt;- read_sheet(url, sheet = 2, trim_ws = TRUE)</code></pre>
-<pre><code>## ✔ Reading from &quot;Test for Youtube&quot;.</code></pre>
-<pre><code>## ✔ Range &#39;&#39;Sheet2&#39;&#39;.</code></pre>
 
 </div>
 

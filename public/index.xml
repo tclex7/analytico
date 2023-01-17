@@ -20,8 +20,8 @@
       <guid>/2023/01/17/2023-01-17-importing-google-sheets-into-r-r-studio/</guid>
       <description>This Tutorial will show you how to import a google sheet directly to R. If the file is set to private, then you will need to link your google drive to R before importing, or you will get an error.
 First you will have to install googlesheets4 package
-if(!require(googlesheets4)) install.packages(&amp;quot;googlesheets4&amp;quot;) ## Loading required package: googlesheets4 locate the url for the google sheets file you wish to import
-url &amp;lt;- &amp;#39;https://docs.</description>
+if(!require(googlesheets4)) install.packages(&amp;quot;googlesheets4&amp;quot;) locate the url for the google sheets file you wish to import
+url &amp;lt;- &amp;#39;https://docs.google.com/spreadsheets/d/1rnwe7QNMkH3WzJfFnWXZ-uvgWxTm1X4yajAEyQKEbGY/edit#gid=0&amp;#39; Read file into R. Notice that the default sheet that will be imported is sheet 1.</description>
     </item>
     
     <item>
