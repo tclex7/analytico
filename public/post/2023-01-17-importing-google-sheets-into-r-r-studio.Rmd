@@ -1,0 +1,34 @@
+---
+title: Importing Google Sheets into R (R Studio)
+author: Alex Cruz
+date: '2023-01-17'
+slug: importing-google-sheets-into-r-r-studio
+categories: []
+tags: []
+description: ''
+---
+
+This Tutorial will show you how to import a google sheet directly to R.  If the file is set to private, then you will need to link your google drive to R before importing, or you will get an error.
+
+First you will have to install googlesheets4 package
+```{r, warning=FALSE}
+if(!require(googlesheets4)) install.packages("googlesheets4")
+```
+
+locate the url for the google sheets file you wish to import
+```{r}
+url <- 'https://docs.google.com/spreadsheets/d/1rnwe7QNMkH3WzJfFnWXZ-uvgWxTm1X4yajAEyQKEbGY/edit#gid=0'
+```
+
+Read file into R.  Notice that the default sheet that will be imported is sheet 1.
+```{r}
+df1 <- read_sheet(url)
+```
+
+Read in second sheet in the file and remove white space
+```{r}
+df2 <- read_sheet(url, sheet = 2, trim_ws = TRUE)
+```
+
+
+

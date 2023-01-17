@@ -3,10 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Calculating Percent Of Total in R &middot; Analytico Hub</title>
-        <meta name="description" content="This tutorial will show you for to calculate percent of total in R. You will need the tidyverse package to run this script.
-if(!require(tidyverse)) install.packages(&quot;tidyverse&quot;) Set your seed, so you can re-create the exact output. We will create an example dataset with two columns: Color and Score. We will include 100 rows in our sample set.
-set.seed(7) df &lt;- data.frame(&quot;Color&quot;=c(&#39;red&#39;, &#39;blue&#39;, &#39;yellow&#39;, &#39;green&#39;, &#39;orange&#39;), &quot;Score&quot; = runif(100, 1, 99) ) head(df) ## Color Score ## 1 red 97.">
+        <title>Importing Google Sheets into R (R Studio) &middot; Analytico Hub</title>
+        <meta name="description" content="This Tutorial will show you how to import a google sheet directly to R. If the file is set to private, then you will need to link your google drive to R before importing, or you will get an error.
+First you will have to install googlesheets4 package
+if(!require(googlesheets4)) install.packages(&quot;googlesheets4&quot;) ## Loading required package: googlesheets4 locate the url for the google sheets file you wish to import
+url &lt;- &#39;https://docs.">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
         <meta name="generator" content="Hugo 0.58.1" />
@@ -105,10 +106,10 @@ if (!doNotTrack) {
 <div class="container">
     <article class="post-container" itemscope="" itemtype="http://schema.org/BlogPosting">
         <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">Calculating Percent Of Total in R</h1>
+    <h1 class="post-title" itemprop="name headline">Importing Google Sheets into R (R Studio)</h1>
     
     <p class="post-date">
-        <span>Published <time datetime="2022-07-26" itemprop="datePublished">Tue, Jul 26, 2022</time></span>
+        <span>Published <time datetime="2023-01-17" itemprop="datePublished">Tue, Jan 17, 2023</time></span>
         <span>by</span>
         <span itemscope="" itemprop="author" itemtype="https://schema.org/Person">
             <span itemprop="name">
@@ -118,7 +119,7 @@ if (!doNotTrack) {
     </p>
     
         <p class="post-reading post-line">
-            <span>Estimated reading time: 2 min</span>
+            <span>Estimated reading time: 1 min</span>
         </p>
     
 </header>
@@ -129,40 +130,27 @@ if (!doNotTrack) {
     
 
 
-<p>This tutorial will show you for to calculate percent of total in R. You will need the tidyverse package to run this script.</p>
-<pre class="r"><code>if(!require(tidyverse)) install.packages(&quot;tidyverse&quot;)</code></pre>
-<p>Set your seed, so you can re-create the exact output. We will create an example dataset with two columns: Color and Score. We will include 100 rows in our sample set.</p>
-<pre class="r"><code>set.seed(7)
-
-
-df &lt;- data.frame(&quot;Color&quot;=c(&#39;red&#39;, &#39;blue&#39;, &#39;yellow&#39;, &#39;green&#39;, &#39;orange&#39;),
-                &quot;Score&quot; =  runif(100, 1, 99) )
-
-head(df)</code></pre>
-<pre><code>##    Color     Score
-## 1    red 97.913111
-## 2   blue 39.979054
-## 3 yellow 12.338382
-## 4  green  7.835371
-## 5 orange 24.887440
-## 6    red 78.617022</code></pre>
-<p>Now we will calculate the percent of total. You will see details to the right of code.</p>
-<pre class="r"><code>percent_of_total &lt;- df %&gt;% #calling the sample dataset
-  group_by(Color) %&gt;% #group the column that we want to summarise 
-  summarise(Count = length(Score), #total rows of each color
-            total_score = sum(Score, na.rm = TRUE),  #total score per color
-            Percent_score = paste0(round(sum(Score * 100) /  
-                            sum(df$Score, na.rm = TRUE),1),&quot;%&quot;))#total score per color divided by total score color of dataset
-
-print(percent_of_total)</code></pre>
-<pre><code>## # A tibble: 5 x 4
-##   Color  Count total_score Percent_score
-##   &lt;fct&gt;  &lt;int&gt;       &lt;dbl&gt; &lt;chr&gt;        
-## 1 blue      20        814. 16%          
-## 2 green     20       1092. 21.5%        
-## 3 orange    20       1027. 20.2%        
-## 4 red       20        994. 19.5%        
-## 5 yellow    20       1163. 22.9%</code></pre>
+<p>This Tutorial will show you how to import a google sheet directly to R. If the file is set to private, then you will need to link your google drive to R before importing, or you will get an error.</p>
+<p>First you will have to install googlesheets4 package</p>
+<pre class="r"><code>if(!require(googlesheets4)) install.packages(&quot;googlesheets4&quot;)</code></pre>
+<pre><code>## Loading required package: googlesheets4</code></pre>
+<p>locate the url for the google sheets file you wish to import</p>
+<pre class="r"><code>url &lt;- &#39;https://docs.google.com/spreadsheets/d/1rnwe7QNMkH3WzJfFnWXZ-uvgWxTm1X4yajAEyQKEbGY/edit#gid=0&#39;</code></pre>
+<p>Read file into R. Notice that the default sheet that will be imported is sheet 1.</p>
+<pre class="r"><code>df1 &lt;- read_sheet(url)</code></pre>
+<pre><code>## ! Using an auto-discovered, cached token.</code></pre>
+<pre><code>##   To suppress this message, modify your code or options to clearly consent to
+##   the use of a cached token.</code></pre>
+<pre><code>##   See gargle&#39;s &quot;Non-interactive auth&quot; vignette for more details:</code></pre>
+<pre><code>##   &lt;https://gargle.r-lib.org/articles/non-interactive-auth.html&gt;</code></pre>
+<pre><code>## ℹ The googlesheets4 package is using a cached token for
+##   &#39;cruz.alexander7@gmail.com&#39;.</code></pre>
+<pre><code>## ✔ Reading from &quot;Test for Youtube&quot;.</code></pre>
+<pre><code>## ✔ Range &#39;Sheet1&#39;.</code></pre>
+<p>Read in second sheet in the file and remove white space</p>
+<pre class="r"><code>df2 &lt;- read_sheet(url, sheet = 2, trim_ws = TRUE)</code></pre>
+<pre><code>## ✔ Reading from &quot;Test for Youtube&quot;.</code></pre>
+<pre><code>## ✔ Range &#39;&#39;Sheet2&#39;&#39;.</code></pre>
 
 </div>
 
@@ -171,7 +159,7 @@ print(percent_of_total)</code></pre>
 
     <div class="share">
         
-            <a class="icon-twitter" href="https://twitter.com/share?text=Calculating%20Percent%20Of%20Total%20in%20R&url=%2f2022%2f07%2f26%2f2022-07-26-calculating-percent-of-total-in-r%2f"
+            <a class="icon-twitter" href="https://twitter.com/share?text=Importing%20Google%20Sheets%20into%20R%20%28R%20Studio%29&url=%2f2023%2f01%2f17%2f2023-01-17-importing-google-sheets-into-r-r-studio%2f"
                 onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                 <i class="fa fa-twitter"></i>
                 <span class="hidden">Twitter</span>
@@ -179,7 +167,7 @@ print(percent_of_total)</code></pre>
         
 
         
-            <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2f2022%2f07%2f26%2f2022-07-26-calculating-percent-of-total-in-r%2f"
+            <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2f2023%2f01%2f17%2f2023-01-17-importing-google-sheets-into-r-r-studio%2f"
                 onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                 <i class="fa fa-facebook"></i>
                 <span class="hidden">Facebook</span>
@@ -187,7 +175,7 @@ print(percent_of_total)</code></pre>
         
 
         
-            <a class="icon-google-plus" href="https://plus.google.com/share?url=%2f2022%2f07%2f26%2f2022-07-26-calculating-percent-of-total-in-r%2f"
+            <a class="icon-google-plus" href="https://plus.google.com/share?url=%2f2023%2f01%2f17%2f2023-01-17-importing-google-sheets-into-r-r-studio%2f"
               onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
               <i class="fa fa-google-plus"></i>
                 <span class="hidden">Google+</span>
