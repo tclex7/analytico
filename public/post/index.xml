@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>My Name</copyright>
-    <lastBuildDate>Tue, 17 Jan 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Apr 2023 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How to use Pivot_Wider and Pivot_Longer in R</title>
+      <link>/2023/04/20/2023-04-20-how-to-use-pivot-wider-and-pivot-longer-in-r/</link>
+      <pubDate>Thu, 20 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/2023/04/20/2023-04-20-how-to-use-pivot-wider-and-pivot-longer-in-r/</guid>
+      <description>First we will call the Tidyverse library and create an example dataset.
+Let’s get to know the dataset.
+head(df1) ## # A tibble: 6 x 3 ## # Groups: Year [2] ## Year Color Score ## &amp;lt;dbl&amp;gt; &amp;lt;fct&amp;gt; &amp;lt;dbl&amp;gt; ## 1 2000 blue 218 ## 2 2000 green 229 ## 3 2000 orange 226 ## 4 2000 red 219 ## 5 2000 yellow 182 ## 6 2001 blue 165 names(df1) ## [1] &amp;quot;Year&amp;quot; &amp;quot;Color&amp;quot; &amp;quot;Score&amp;quot; n_distinct(df1$Color) ## [1] 5 Now we will take the Color column and make each color its own colomn.</description>
+    </item>
     
     <item>
       <title>Importing Google Sheets into R (R Studio)</title>

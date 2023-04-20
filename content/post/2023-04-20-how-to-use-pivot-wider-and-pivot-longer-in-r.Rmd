@@ -1,0 +1,56 @@
+---
+title: How to use Pivot_Wider and Pivot_Longer in R
+author: Alex Cruz
+date: '2023-04-20'
+slug: how-to-use-pivot-wider-and-pivot-longer-in-r
+categories: []
+tags: []
+description: ''
+---
+
+First we will call the Tidyverse library and create an example dataset.
+```{r, warning=F, message=F, echo=F}
+set.seed(7)
+library(tidyverse)
+
+x = c(2000, 2000, 2000, 2000, 2000,
+      2001, 2001, 2001, 2001, 2001,
+      2002, 2002, 2002, 2002, 2002,
+      2003, 2003, 2003, 2003, 2003,
+      2004, 2004, 2004, 2004, 2004)
+df <- data.frame("Color"=c('red', 'blue', 'yellow', 'green', 'orange'),
+                 "Score" =  runif(100, 1, 99),
+                 "Year" = rep(x, 4))
+df1 = df %>% group_by(Year ,Color) %>% summarise(Score = round(sum(Score),0))
+```
+
+Let's get to know the dataset.
+```{r, warning=F, message=F, echo=T}
+head(df1)
+names(df1)
+n_distinct(df1$Color)
+```
+
+Now we will take the Color column and make each color its own colomn.
+```{r, warning=F, message=F, echo=T}
+wide <- df1 %>% pivot_wider(names_from = Color, values_from = Score)
+print(wide)
+```
+
+Now we will use pivot longer to change the wide dataset back to its original format
+```{r, warning=F, message=F, echo=T}
+long <- wide %>% pivot_longer(-Year, names_to = "Color", values_to = "Score" )
+print(long)
+```
+
+Let's take it a step further and widen out both the year and the color.
+```{r, warning=F, message=F, echo=T}
+wide2 <- df1 %>% pivot_wider(names_from = c(Year, Color), values_from = Score)
+print(wide2)
+```
+
+Now we will take the previous dataset (wide2) and revert it back to it's original format
+```{r, warning=F, message=F, echo=T}
+long2 <- wide2 %>% pivot_longer(everything(), names_sep = "_", names_to = c("Year","Color"), values_to = "Score" )
+print(long2)
+```

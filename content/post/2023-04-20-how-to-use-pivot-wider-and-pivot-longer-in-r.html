@@ -1,0 +1,90 @@
+---
+title: How to use Pivot_Wider and Pivot_Longer in R
+author: Alex Cruz
+date: '2023-04-20'
+slug: how-to-use-pivot-wider-and-pivot-longer-in-r
+categories: []
+tags: []
+description: ''
+---
+
+
+
+<p>First we will call the Tidyverse library and create an example dataset.</p>
+<p>Let’s get to know the dataset.</p>
+<pre class="r"><code>head(df1)</code></pre>
+<pre><code>## # A tibble: 6 x 3
+## # Groups:   Year [2]
+##    Year Color  Score
+##   &lt;dbl&gt; &lt;fct&gt;  &lt;dbl&gt;
+## 1  2000 blue     218
+## 2  2000 green    229
+## 3  2000 orange   226
+## 4  2000 red      219
+## 5  2000 yellow   182
+## 6  2001 blue     165</code></pre>
+<pre class="r"><code>names(df1)</code></pre>
+<pre><code>## [1] &quot;Year&quot;  &quot;Color&quot; &quot;Score&quot;</code></pre>
+<pre class="r"><code>n_distinct(df1$Color)</code></pre>
+<pre><code>## [1] 5</code></pre>
+<p>Now we will take the Color column and make each color its own colomn.</p>
+<pre class="r"><code>wide &lt;- df1 %&gt;% pivot_wider(names_from = Color, values_from = Score)
+print(wide)</code></pre>
+<pre><code>## # A tibble: 5 x 6
+## # Groups:   Year [5]
+##    Year  blue green orange   red yellow
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1  2000   218   229    226   219    182
+## 2  2001   165   149    151   273    160
+## 3  2002   134   198    187   130    307
+## 4  2003   143   194    236   189    216
+## 5  2004   153   322    227   182    299</code></pre>
+<p>Now we will use pivot longer to change the wide dataset back to its original format</p>
+<pre class="r"><code>long &lt;- wide %&gt;% pivot_longer(-Year, names_to = &quot;Color&quot;, values_to = &quot;Score&quot; )
+print(long)</code></pre>
+<pre><code>## # A tibble: 25 x 3
+## # Groups:   Year [5]
+##     Year Color  Score
+##    &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;
+##  1  2000 blue     218
+##  2  2000 green    229
+##  3  2000 orange   226
+##  4  2000 red      219
+##  5  2000 yellow   182
+##  6  2001 blue     165
+##  7  2001 green    149
+##  8  2001 orange   151
+##  9  2001 red      273
+## 10  2001 yellow   160
+## # … with 15 more rows</code></pre>
+<p>Let’s take it a step further and widen out both the year and the color.</p>
+<pre class="r"><code>wide2 &lt;- df1 %&gt;% pivot_wider(names_from = c(Year, Color), values_from = Score)
+print(wide2)</code></pre>
+<pre><code>## # A tibble: 1 x 25
+##   `2000_blue` `2000_green` `2000_orange` `2000_red` `2000_yellow` `2001_blue`
+##         &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+## 1         218          229           226        219           182         165
+## # … with 19 more variables: `2001_green` &lt;dbl&gt;, `2001_orange` &lt;dbl&gt;,
+## #   `2001_red` &lt;dbl&gt;, `2001_yellow` &lt;dbl&gt;, `2002_blue` &lt;dbl&gt;,
+## #   `2002_green` &lt;dbl&gt;, `2002_orange` &lt;dbl&gt;, `2002_red` &lt;dbl&gt;,
+## #   `2002_yellow` &lt;dbl&gt;, `2003_blue` &lt;dbl&gt;, `2003_green` &lt;dbl&gt;,
+## #   `2003_orange` &lt;dbl&gt;, `2003_red` &lt;dbl&gt;, `2003_yellow` &lt;dbl&gt;,
+## #   `2004_blue` &lt;dbl&gt;, `2004_green` &lt;dbl&gt;, `2004_orange` &lt;dbl&gt;,
+## #   `2004_red` &lt;dbl&gt;, `2004_yellow` &lt;dbl&gt;</code></pre>
+<p>Now we will take the previous dataset (wide2) and revert it back to it’s original format</p>
+<pre class="r"><code>long2 &lt;- wide2 %&gt;% pivot_longer(everything(), names_sep = &quot;_&quot;, names_to = c(&quot;Year&quot;,&quot;Color&quot;), values_to = &quot;Score&quot; )
+print(long2)</code></pre>
+<pre><code>## # A tibble: 25 x 3
+##    Year  Color  Score
+##    &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;
+##  1 2000  blue     218
+##  2 2000  green    229
+##  3 2000  orange   226
+##  4 2000  red      219
+##  5 2000  yellow   182
+##  6 2001  blue     165
+##  7 2001  green    149
+##  8 2001  orange   151
+##  9 2001  red      273
+## 10 2001  yellow   160
+## # … with 15 more rows</code></pre>
