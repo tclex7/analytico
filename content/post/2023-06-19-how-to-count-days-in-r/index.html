@@ -1,0 +1,81 @@
+---
+title: How to Count Days in R
+author: Alex Cruz
+date: '2023-06-19'
+slug: []
+categories: []
+tags: []
+description: ''
+---
+
+
+
+<pre class="r"><code>#cleaning environment
+rm(list = ls())
+
+#packages required
+library(tidyverse)
+library(bizdays)
+
+#enter one or more holidays
+holiday &lt;- as.Date(c( &#39;2023-01-02&#39;,&#39;2023-05-29&#39;,&#39;2023-07-04&#39;))
+
+
+#create a sequence of days
+date_range &lt;- seq.Date(as.Date(&#39;2023-05-24&#39;), as.Date(&#39;2023-05-30&#39;), 1)
+
+#print range of dates
+print(date_range)</code></pre>
+<pre><code>## [1] &quot;2023-05-24&quot; &quot;2023-05-25&quot; &quot;2023-05-26&quot; &quot;2023-05-27&quot; &quot;2023-05-28&quot;
+## [6] &quot;2023-05-29&quot; &quot;2023-05-30&quot;</code></pre>
+<pre class="r"><code>#count the days from first to last date, remove saturday, remove holiday
+n_distinct(date_range[!weekdays(date_range) %in% (c(&quot;Saturday&quot;, &quot;Sunday&quot;)) &amp; !date_range %in% holiday])</code></pre>
+<pre><code>## [1] 4</code></pre>
+<pre class="r"><code>business_calendar &lt;- create.calendar(&#39;my_calendar&#39;, weekdays = c(&#39;saturday&#39;,&#39;sunday&#39;), holidays =  holiday) #creating the calendar here
+
+bizdays(&#39;2023-05-24&#39;, &#39;2023-05-30&#39;, cal = business_calendar)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code>bizdays(&quot;2023-05-24&quot;, &quot;2023-05-30&quot;, cal = business_calendar) +1</code></pre>
+<pre><code>## [1] 4</code></pre>
+<pre class="r"><code>## lets do the same thing with data frames
+#create example data set
+df &lt;- data.frame(
+  &quot;name&quot;=c(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;),
+  &quot;start&quot;=c(&#39;2023-05-24&#39;, &#39;2023-05-24&#39;, &#39;2023-05-23&#39;, &#39;2023-05-22&#39;, &#39;2023-05-22&#39;),
+  &quot;stop&quot;=c(&#39;2023-05-27&#39;, &#39;2023-06-05&#39;, &#39;2023-06-05&#39;, &#39;2023-06-06&#39;, &#39;2023-06-05&#39;),
+  &quot;days_count&quot;=&#39;&#39;
+)
+df$start&lt;- as.Date(df$start)
+df$stop&lt;- as.Date(df$stop)
+
+
+#Calculate Ready for DPSS Screening to Ready for Batch, exclude weekends and federal holidays (RS to RB)
+for(i in 1:nrow(df)) {
+  date_range &lt;- seq.Date(df$start[i], df$stop[i], 1)
+  df$days_count[i] &lt;- n_distinct(date_range[!weekdays(date_range) %in% (c(&quot;Saturday&quot;, &quot;Sunday&quot;)) &amp; !date_range %in% holiday])
+  df$days_count [i] &lt;- as.numeric(df$days_count[i])
+}
+
+
+#remove days count for second function
+df2 &lt;- df %&gt;% mutate(days_count = &#39;&#39;)
+print(df2)</code></pre>
+<pre><code>##   name      start       stop days_count
+## 1    a 2023-05-24 2023-05-27           
+## 2    b 2023-05-24 2023-06-05           
+## 3    c 2023-05-23 2023-06-05           
+## 4    d 2023-05-22 2023-06-06           
+## 5    e 2023-05-22 2023-06-05</code></pre>
+<pre class="r"><code>#use the mutate function to calculate days count
+df2 &lt;- df2 %&gt;%
+  mutate(&quot;days_count&quot; = bizdays(from = start, to= stop, cal = business_calendar)+1)
+
+df$days_count &lt;- as.numeric(df$days_count)
+summary(df$days_count)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     3.0     8.0     9.0     8.2    10.0    11.0</code></pre>
+<pre class="r"><code>summary(df2$days_count)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     3.0     8.0     9.0     8.2    10.0    11.0</code></pre>
+<pre class="r"><code>identical(df2$days_count, df$days_count)</code></pre>
+<pre><code>## [1] TRUE</code></pre>

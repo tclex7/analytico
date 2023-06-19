@@ -1,0 +1,77 @@
+---
+title: How to Count Days in R
+author: Alex Cruz
+date: '2023-06-19'
+slug: []
+categories: []
+tags: []
+description: ''
+---
+```{r, message=FALSE, warning=FALSE}
+#cleaning environment
+rm(list = ls())
+
+#packages required
+library(tidyverse)
+library(bizdays)
+
+#enter one or more holidays
+holiday <- as.Date(c( '2023-01-02','2023-05-29','2023-07-04'))
+
+
+#create a sequence of days
+date_range <- seq.Date(as.Date('2023-05-24'), as.Date('2023-05-30'), 1)
+
+#print range of dates
+print(date_range)
+
+#count the days from first to last date, remove saturday, remove holiday
+n_distinct(date_range[!weekdays(date_range) %in% (c("Saturday", "Sunday")) & !date_range %in% holiday])
+
+
+business_calendar <- create.calendar('my_calendar', weekdays = c('saturday','sunday'), holidays =  holiday) #creating the calendar here
+
+bizdays('2023-05-24', '2023-05-30', cal = business_calendar)
+
+bizdays("2023-05-24", "2023-05-30", cal = business_calendar) +1
+
+
+## lets do the same thing with data frames
+#create example data set
+df <- data.frame(
+  "name"=c('a', 'b', 'c', 'd', 'e'),
+  "start"=c('2023-05-24', '2023-05-24', '2023-05-23', '2023-05-22', '2023-05-22'),
+  "stop"=c('2023-05-27', '2023-06-05', '2023-06-05', '2023-06-06', '2023-06-05'),
+  "days_count"=''
+)
+df$start<- as.Date(df$start)
+df$stop<- as.Date(df$stop)
+
+
+#Calculate Ready for DPSS Screening to Ready for Batch, exclude weekends and federal holidays (RS to RB)
+for(i in 1:nrow(df)) {
+  date_range <- seq.Date(df$start[i], df$stop[i], 1)
+  df$days_count[i] <- n_distinct(date_range[!weekdays(date_range) %in% (c("Saturday", "Sunday")) & !date_range %in% holiday])
+  df$days_count [i] <- as.numeric(df$days_count[i])
+}
+
+
+#remove days count for second function
+df2 <- df %>% mutate(days_count = '')
+print(df2)
+
+#use the mutate function to calculate days count
+df2 <- df2 %>%
+  mutate("days_count" = bizdays(from = start, to= stop, cal = business_calendar)+1)
+
+df$days_count <- as.numeric(df$days_count)
+summary(df$days_count)
+
+summary(df2$days_count)
+
+identical(df2$days_count, df$days_count)
+
+
+
+```
+
